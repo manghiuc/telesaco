@@ -51,9 +51,49 @@ ul,ol{ list-style:none; padding:0; margin:0; }
 ::selection{ background: var(--y); color: var(--ink); }
 
 
+/* ============== TOPBAR ============== */
+.topbar{
+  background: var(--ink);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 9px var(--grid);
+  position: sticky; top: 0; z-index: 100;
+}
+.topbar__inner{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.topbar__status{ display: flex; align-items: center; gap: 7px; }
+.topbar__dot{
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: #1ea052;
+  box-shadow: 0 0 0 0 rgba(30,160,82,.6);
+  animation: topbar-pulse 1.6s ease-in-out infinite;
+  flex-shrink: 0;
+}
+@keyframes topbar-pulse{
+  0%   { box-shadow: 0 0 0 0 rgba(30,160,82,.7); }
+  70%  { box-shadow: 0 0 0 7px rgba(30,160,82,0); }
+  100% { box-shadow: 0 0 0 0 rgba(30,160,82,0); }
+}
+.topbar__phone{
+  color: var(--y);
+  text-decoration: none;
+  font-weight: 700;
+}
+.topbar__phone:hover{ text-decoration: underline; }
+.topbar__sep{ color: #555; }
+
 /* ============== HEADER ============== */
 .hd{
-  position: sticky; top:0; z-index: 90;
+  position: sticky; top: 38px; z-index: 90;
   background: var(--paper);
   display:grid;
   grid-template-columns: auto 1fr auto;
@@ -294,7 +334,7 @@ ul,ol{ list-style:none; padding:0; margin:0; }
   color: white;
   padding: 36px;
   border-radius: var(--r-lg);
-  position: sticky; top: 90px;
+  position: sticky; top: 128px;
   box-shadow:
     0 30px 60px -20px rgba(0,0,0,.4),
     0 0 0 6px var(--y);
@@ -837,11 +877,10 @@ ul,ol{ list-style:none; padding:0; margin:0; }
 .row--cta > div{ padding: 22px 20px; }
 
 @media (max-width: 800px){
-  .compare__table{ display: block; }
-  .row{ grid-template-columns: 1fr; }
-  .row > div{ border-right: none; padding: 12px 18px; }
-  .row > div:first-child{ background: rgba(255,212,0,.08); }
-  .row--head{ display: none; }
+  .compare__table{ overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .row{ min-width: 540px; }
+  .row > div{ padding: 13px 14px; }
+  .compare__hint{ display: block; }
 }
 
 /* ============== STEPS ============== */
@@ -1156,4 +1195,122 @@ ul,ol{ list-style:none; padding:0; margin:0; }
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+/* ============== COMPARE HINT ============== */
+.compare__hint{
+  display: none; /* shown only at <=800px via the media query above */
+  text-align: center;
+  font-size: 12px;
+  color: rgba(255,255,255,.45);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin: 0 0 14px;
+  font-weight: 600;
+}
+
+/* ============================================================
+   MOBILE — phones ≤ 640px
+   ============================================================ */
+@media (max-width: 640px) {
+
+  /* — Topbar: hide the hours to keep a single line — */
+  .topbar__inner > span:last-child,
+  .topbar__sep:last-of-type { display: none; }
+  .topbar { padding: 8px 18px; }
+
+  /* — Header — */
+  .hd { padding: 10px 16px; }
+  .hd__name em { display: none; }
+  .hd__logo svg { width: 30px; height: 30px; }
+
+  /* — Hero — */
+  .hero { padding: 28px 18px 0; }
+  .hero__chip { font-size: 11px; padding: 6px 12px; margin-bottom: 16px; }
+  .hero__title { margin-bottom: 18px; }
+  .hero__sub { font-size: 1rem; margin-bottom: 22px; }
+  .hero__cta { flex-direction: column; gap: 10px; }
+  .hero__cta .btn { width: 100%; justify-content: center; }
+  .hero__bullets {
+    flex-direction: column;
+    gap: 8px;
+    padding-top: 18px;
+  }
+  .hero__bullets li { font-size: 13px; }
+
+  /* — Calculator — */
+  .calc {
+    position: static; /* no sticky floating on mobile */
+    padding: 22px 16px;
+    border-radius: 18px;
+    box-shadow: 0 16px 36px -10px rgba(0,0,0,.35), 0 0 0 4px var(--y);
+    margin-top: 32px;
+  }
+  .calc__head { margin-bottom: 18px; padding-bottom: 14px; }
+  .calc__head h3 { font-size: 1rem; line-height: 1.2; }
+  .seg button {
+    min-width: 0;
+    flex: 1;
+    padding: 10px 6px;
+    font-size: 11.5px;
+  }
+  .calc__total { padding: 16px 18px; margin: 18px 0 14px; }
+
+  /* — Products — */
+  .prod { padding: 22px 16px; }
+  .prod h3 { font-size: 1.3rem; }
+
+  /* — Saco flat price banner — */
+  .saco-flat {
+    flex-direction: column;
+    text-align: center;
+    padding: 20px 18px;
+    gap: 12px;
+  }
+  .saco-flat__price { justify-content: center; }
+
+  /* — Zone radio cards: 1-column municipality list — */
+  .radio-card ul {
+    columns: 1;
+    padding: 14px 16px 16px;
+  }
+  .radio-card__head { padding: 16px 18px 14px; }
+  .radio-prices { gap: 16px; }
+
+  /* — Steps — */
+  .step { padding: 24px 16px; }
+  .step__n { font-size: 3rem; padding: 6px 16px; margin-bottom: 14px; }
+  .step h3 { font-size: 1.2rem; }
+
+  /* — Allowed — */
+  .allowed__col { padding: 24px 16px; }
+  .allowed__col h3 { font-size: 1.25rem; }
+  .allowed__col ul li { font-size: 14px; padding: 10px 0; }
+
+  /* — Reviews — */
+  .rev { padding: 22px 16px; }
+  .rev p { font-size: 15px; }
+
+  /* — FAQ — */
+  .faq summary { padding: 18px 16px; font-size: 15px; gap: 12px; }
+  .faq details p { padding: 0 16px 16px; }
+
+  /* — CTA final — */
+  .cta-final { padding: 60px 18px; }
+  .cta-final__actions { flex-direction: column; align-items: center; gap: 12px; }
+  .cta-final__actions .btn { width: 100%; max-width: 320px; }
+
+  /* — Footer — */
+  .ft { padding: 50px 18px 24px; }
+  .ft__big { font-size: clamp(3rem, 20vw, 6rem); margin-bottom: 36px; }
+  .ft__cols { grid-template-columns: 1fr 1fr; gap: 22px; }
+  .ft__bar { flex-direction: column; text-align: center; gap: 4px; }
+
+  /* — WhatsApp FAB — */
+  .wsp { bottom: 16px; right: 16px; width: 52px; height: 52px; }
+  .wsp svg { width: 24px; height: 24px; }
+
+  /* — Section heads — */
+  .sec-head { margin-bottom: 36px; }
+  .h2 { font-size: clamp(1.9rem, 9vw, 2.6rem); margin-bottom: 12px; }
 }
