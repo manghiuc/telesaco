@@ -124,22 +124,43 @@
     });
   });
 
-  orderBtn?.addEventListener('click', (e) => {
+  // ── Stripe Checkout (dynamic, via Netlify Function) ──────────────────────
+  orderBtn?.addEventListener('click', async (e) => {
     e.preventDefault();
-    const original = orderBtn.innerHTML;
-    orderBtn.innerHTML = '<span>Reservando\u2026</span>';
-    setTimeout(() => {
-      orderBtn.innerHTML = '<span>\u2713 Reserva enviada \u2014 te llamamos en 30 min</span>';
-      orderBtn.style.background   = '#1ea052';
-      orderBtn.style.color        = 'white';
-      orderBtn.style.borderColor  = '#1ea052';
-      setTimeout(() => {
-        orderBtn.innerHTML        = original;
-        orderBtn.style.background = '';
-        orderBtn.style.color      = '';
-        orderBtn.style.borderColor = '';
-      }, 4500);
-    }, 900);
+    const nameEl    = document.getElementById('custName');
+    const phoneEl   = document.getElementById('custPhone');
+    const addressEl = document.getElementById('custAddress');
+    const name      = nameEl?.value.trim()    || '';
+    const phone     = phoneEl?.value.trim()   || '';
+    const address   = addressEl?.value.trim() || '';
+
+    [nameEl, phoneEl, addressEl].forEach((el, i) => {
+      const val = [name, phone, address][i];
+      if (!el) return;
+      el.classList.toggle('is-invalid', !val);
+    });
+    if (!name || !phone || !address) return;
+
+    orderBtn.disabled = true;
+    orderBtn.textContent = 'Redirigiendo al pago…';
+
+    try {
+      const res  = await fetch('/.netlify/functions/create-checkout', {
+        method:  'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body:    JSON.stringify({ product: prod, zone: radio, quantity: qty, name, phone, address }),
+      });
+      const data = await res.json();
+      if (data.url) {
+        window.location.href = data.url;
+      } else {
+        throw new Error(data.error || 'Error desconocido');
+      }
+    } catch (err) {
+      alert('No se pudo conectar con el sistema de pago.\nLl\u00e1manos al 677 882 716 para hacer tu pedido.');
+      orderBtn.disabled = false;
+      orderBtn.textContent = 'Continuar al pago \u2192';
+    }
   });
 
   /* init */

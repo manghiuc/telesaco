@@ -487,7 +487,8 @@ ul,ol{ list-style:none; padding:0; margin:0; }
   overflow: hidden;
   border-top: 1px solid rgba(255,255,255,.05);
   transform: rotate(-1deg);
-  margin: 0 -20px;
+  margin: 0 -60px;
+  width: calc(100% + 120px);
 }
 .hero__stripe__track{
   display:flex; gap: 36px;
@@ -1113,18 +1114,36 @@ ul,ol{ list-style:none; padding:0; margin:0; }
 .ft{
   background: var(--ink); color: white;
   padding: 70px var(--grid) 30px;
+  overflow: hidden;
+}
+.ft__logo-wrap{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+.ft__logo-name{
+  font-family: var(--f-display);
+  font-size: 22px;
+  letter-spacing: 0.04em;
+  color: var(--y);
+  text-transform: uppercase;
 }
 .ft__big{
   font-family: var(--f-display);
-  font-size: clamp(4rem, 18vw, 16rem);
+  font-size: clamp(2rem, 11vw, 9rem);
   line-height: 0.85;
-  letter-spacing: -0.05em;
+  letter-spacing: -0.03em;
   text-align: center;
   color: rgba(255,212,0,0.08);
   margin-bottom: 60px;
   padding-bottom: 50px;
   border-bottom: 1px solid rgba(255,255,255,.08);
   user-select: none;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 100%;
 }
 .ft__cols{
   max-width: var(--container);
@@ -1251,7 +1270,13 @@ ul,ol{ list-style:none; padding:0; margin:0; }
     padding: 22px 16px;
     border-radius: 18px;
     box-shadow: 0 16px 36px -10px rgba(0,0,0,.35), 0 0 0 4px var(--y);
-    margin-top: 32px;
+    margin: 32px 4px 0;
+  }
+  /* — Stripe: on mobile reset bleed margins — */
+  .hero__stripe {
+    margin: 0;
+    width: 100%;
+    transform: none;
   }
   .calc__head { margin-bottom: 18px; padding-bottom: 14px; }
   .calc__head h3 { font-size: 1rem; line-height: 1.2; }
@@ -1308,8 +1333,9 @@ ul,ol{ list-style:none; padding:0; margin:0; }
   .cta-final__actions .btn { width: 100%; max-width: 320px; }
 
   /* — Footer — */
-  .ft { padding: 50px 18px 24px; }
-  .ft__big { font-size: clamp(3rem, 20vw, 6rem); margin-bottom: 36px; }
+  .ft { padding: 40px 18px 24px; }
+  .ft__logo-wrap { margin-bottom: 20px; }
+  .ft__big { font-size: clamp(3rem, 17vw, 6rem); margin-bottom: 36px; text-align: center; }
   .ft__cols { grid-template-columns: 1fr 1fr; gap: 22px; }
   .ft__bar { flex-direction: column; text-align: center; gap: 4px; }
 
@@ -1320,4 +1346,60 @@ ul,ol{ list-style:none; padding:0; margin:0; }
   /* — Section heads — */
   .sec-head { margin-bottom: 36px; }
   .h2 { font-size: clamp(1.9rem, 9vw, 2.6rem); margin-bottom: 12px; }
+}
+
+/* ============== CONTACT FORM INPUTS ============== */
+.calc__divider {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 18px 0 10px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gray);
+}
+.calc__divider::before,
+.calc__divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--line-soft);
+}
+
+.fld input[type="text"],
+.fld input[type="tel"] {
+  width: 100%;
+  padding: 11px 14px;
+  border: 1.5px solid var(--line-soft);
+  border-radius: var(--r);
+  background: white;
+  font-family: var(--f-sans);
+  font-size: 15px;
+  color: var(--ink);
+  outline: none;
+  transition: border-color var(--t-fast), box-shadow var(--t-fast);
+  margin-top: 6px;
+}
+.fld input[type="text"]:focus,
+.fld input[type="tel"]:focus {
+  border-color: var(--y-deep);
+  box-shadow: 0 0 0 3px rgba(255,212,0,.18);
+}
+.fld input.is-invalid {
+  border-color: var(--red);
+  box-shadow: 0 0 0 3px rgba(208,72,72,.12);
+}
+
+.calc__note {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+.calc__note svg {
+  flex-shrink: 0;
+  opacity: .55;
 }

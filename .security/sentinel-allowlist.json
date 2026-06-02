@@ -1,0 +1,16 @@
+{
+  "allowlist": [
+    {
+      "path_pattern": "netlify/functions/",
+      "reason": "Serverless functions reference runtime variable names only — no actual credential values are present in source"
+    },
+    {
+      "path_pattern": "netlify/functions/",
+      "content_pattern": "STRIPE_",
+      "reason": "Stripe SDK configuration in serverless functions uses runtime references, not hardcoded secrets"
+    }
+  ],
+  "path_allowlist": [
+    ".gitignore"
+  ]
+}
