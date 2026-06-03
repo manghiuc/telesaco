@@ -5,6 +5,21 @@
 [functions]
   node_bundler = "esbuild"
 
+[[redirects]]
+  from = "/politica-privacidad"
+  to   = "/politica-privacidad.html"
+  status = 200
+
+[[redirects]]
+  from = "/condiciones"
+  to   = "/condiciones.html"
+  status = 200
+
+[[redirects]]
+  from = "/aviso-legal"
+  to   = "/aviso-legal.html"
+  status = 200
+
 [[headers]]
   for = "/.netlify/functions/*"
   [headers.values]
