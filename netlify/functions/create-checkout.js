@@ -67,7 +67,7 @@ exports.handler = async (event) => {
 
     const origin = event.headers.origin
       || (event.headers.referer || '').replace(/\/$/, '')
-      || 'https://telesacoadomicilio.com';
+      || 'https://telesacoenmadrid.es';
 
     const session = await stripe.checkout.sessions.create({
       automatic_payment_methods: { enabled: true },
