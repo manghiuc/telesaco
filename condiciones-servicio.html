@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="robots" content="noindex" />
+<title>Condiciones de Servicio · Telesaco Madrid</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2218%22 fill=%22%23ffd400%22/><text x=%2250%22 y=%2272%22 font-family=%22Arial Black%22 font-size=%2272%22 font-weight=%22900%22 text-anchor=%22middle%22 fill=%22%230f0f0f%22>T</text></svg>" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:      #0f0f0f;
+    --surface: #1a1a1a;
+    --border:  #2a2a2a;
+    --fg:      #f0f0f0;
+    --muted:   #888;
+    --accent:  #ffd400;
+    --font-display: 'Archivo Black', sans-serif;
+    --font-body:    'Inter', system-ui, sans-serif;
+  }
+
+  html { font-size: 16px; overflow-x: hidden; }
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--font-body);
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  .topbar {
+    background: #000;
+    border-bottom: 1px solid var(--border);
+    padding: 8px 16px;
+    text-align: center;
+    font-size: 0.75rem;
+    color: var(--muted);
+  }
+  .topbar a { color: var(--accent); text-decoration: none; }
+
+  .hd {
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .hd__brand {
+    display: flex; align-items: center; gap: 10px;
+    text-decoration: none; color: var(--fg);
+  }
+  .hd__name strong { font-family: var(--font-display); font-size: 1.05rem; letter-spacing: 0.02em; color: var(--fg); }
+  .hd__name em { display: block; font-style: normal; font-size: 0.7rem; color: var(--muted); }
+
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 56px 24px 80px;
+  }
+
+  .badge {
+    display: inline-block;
+    background: var(--accent);
+    color: #000;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 2px;
+    margin-bottom: 16px;
+  }
+
+  h1 {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 5vw, 2.6rem);
+    line-height: 1.15;
+    margin-bottom: 8px;
+    color: var(--fg);
+  }
+
+  .meta {
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin-bottom: 48px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  h2 {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    letter-spacing: 0.01em;
+    color: var(--accent);
+    margin: 40px 0 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  p { margin-bottom: 14px; font-size: 0.94rem; color: #ccc; }
+
+  ul, ol {
+    margin: 0 0 16px 20px;
+    font-size: 0.94rem;
+    color: #ccc;
+  }
+  li { margin-bottom: 6px; }
+
+  strong { color: var(--fg); }
+
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  .info-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: 6px;
+    padding: 16px 20px;
+    margin: 20px 0;
+    font-size: 0.9rem;
+    color: #ccc;
+  }
+  .info-box strong { display: block; margin-bottom: 6px; font-size: 0.95rem; }
+
+  .price-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 0.88rem;
+  }
+  .price-table th {
+    background: var(--surface);
+    color: var(--accent);
+    font-family: var(--font-display);
+    font-size: 0.78rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+  .price-table td {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+    color: #ccc;
+    vertical-align: top;
+  }
+  .price-table tr:last-child td { border-bottom: none; }
+
+  .ft {
+    border-top: 1px solid var(--border);
+    padding: 24px;
+    text-align: center;
+    font-size: 0.78rem;
+    color: var(--muted);
+  }
+  .ft a { color: var(--accent); margin: 0 6px; }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  Disponible ahora · Entrega en 24 h &nbsp;·&nbsp;
+  <a href="tel:+34655416425">655 416 425</a>
+  &nbsp;·&nbsp; L–V 8:00–19:00 · S 9:00–13:00
+</div>
+
+<header class="hd">
+  <a href="index.html" class="hd__brand">
+    <svg viewBox="0 0 40 40" width="32" height="32" aria-hidden="true">
+      <rect x="2" y="2" width="36" height="36" rx="8" fill="#FFD400"/>
+      <path d="M10 12 H30 L26 30 H14 Z" fill="#0f0f0f"/>
+      <path d="M14 18 H26" stroke="#FFD400" stroke-width="1.5"/>
+    </svg>
+    <span class="hd__name">
+      <strong>TELESACO</strong>
+      <em>a domicilio · Madrid</em>
+    </span>
+  </a>
+</header>
+
+<main class="wrap">
+  <span class="badge">Legal</span>
+  <h1>Condiciones de Servicio</h1>
+  <p class="meta">Última actualización: junio de 2026 · Prestador: Telesaco a Domicilio Madrid</p>
+
+  <h2>1. Datos del prestador del servicio</h2>
+  <div class="info-box">
+    <strong>Telesaco a Domicilio Madrid</strong>
+    Actividad: alquiler, entrega y recogida de sacos de escombro y contenedores en la Comunidad de Madrid.<br>
+    Teléfono: <a href="tel:+34655416425">655 416 425</a><br>
+    Correo: <a href="mailto:info@telesacoadomicilio.com">info@telesacoadomicilio.com</a><br>
+    Web: <a href="https://www.telesacoadomicilio.com">www.telesacoadomicilio.com</a>
+  </div>
+
+  <h2>2. Objeto y ámbito del servicio</h2>
+  <p>Telesaco a Domicilio Madrid presta el servicio de entrega de sacos de escombro y contenedores metálicos en domicilios, obras y locales ubicados en la Comunidad de Madrid, así como la posterior recogida y gestión de los residuos de construcción y demolición (RCDs) conforme a la normativa vigente.</p>
+  <p>El servicio está disponible exclusivamente en los municipios indicados en la sección de zonas de la web. Antes de realizar un pedido, comprueba que tu dirección se encuentra dentro del área de cobertura.</p>
+
+  <h2>3. Tarifas y precios</h2>
+  <p>Todos los precios incluyen IVA y están expresados en euros (€).</p>
+
+  <table class="price-table">
+    <thead>
+      <tr>
+        <th>Producto</th>
+        <th>Precio</th>
+        <th>Gastos de envío</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Telesaco Estándar (1 m³ · 1.000 kg)</strong><br>Válido para todos los municipios</td>
+        <td>50 €/ud</td>
+        <td>5 € por pedido. Gratis a partir de 3 unidades.</td>
+      </tr>
+      <tr>
+        <td><strong>Contenedor 3 m³ — Radio 1</strong></td>
+        <td>185 €</td>
+        <td rowspan="6" style="vertical-align:middle;">Incluido</td>
+      </tr>
+      <tr>
+        <td><strong>Contenedor 3 m³ — Radio 2</strong></td>
+        <td>205 €</td>
+      </tr>
+      <tr>
+        <td><strong>Contenedor 3 m³ — Radio 3</strong></td>
+        <td>225 €</td>
+      </tr>
+      <tr>
+        <td><strong>Contenedor 6 m³ — Radio 1</strong></td>
+        <td>215 €</td>
+      </tr>
+      <tr>
+        <td><strong>Contenedor 6 m³ — Radio 2</strong></td>
+        <td>235 €</td>
+      </tr>
+      <tr>
+        <td><strong>Contenedor 6 m³ — Radio 3</strong></td>
+        <td>255 €</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>Los precios publicados en la web son los vigentes en el momento de la contratación. Telesaco se reserva el derecho a modificarlos en cualquier momento, sin efecto retroactivo sobre pedidos ya confirmados y pagados.</p>
+
+  <h2>4. Proceso de contratación</h2>
+  <ol>
+    <li>El cliente selecciona el producto, la zona, la cantidad y proporciona sus datos de contacto y dirección de entrega.</li>
+    <li>Se redirige al cliente a la plataforma de pago seguro de <strong>Stripe</strong>, donde completa el pago mediante tarjeta bancaria, Bizum, Google Pay o Apple Pay.</li>
+    <li>Una vez confirmado el pago por Stripe, el pedido queda registrado y el cliente recibe confirmación.</li>
+    <li>Telesaco coordina la entrega en un plazo máximo de <strong>24 horas hábiles</strong> desde la confirmación del pago.</li>
+  </ol>
+  <p>El contrato se perfecciona en el momento en que Telesaco confirma la recepción del pago y la disponibilidad del producto solicitado.</p>
+
+  <h2>5. Entrega</h2>
+  <ul>
+    <li>El cliente debe indicar una dirección de entrega accesible para el vehículo de reparto.</li>
+    <li>Si la colocación se realiza en <strong>vía pública</strong> (calle, acera, plaza), es responsabilidad exclusiva del cliente obtener la <strong>licencia de ocupación de la vía pública</strong> en el Ayuntamiento correspondiente antes de la entrega. La ausencia de dicha licencia puede dar lugar a multas administrativas de las que Telesaco no se hace responsable.</li>
+    <li>En caso de que el acceso no sea posible en el momento de la entrega por causas imputables al cliente, se podrá cobrar un recargo por segundo intento de entrega.</li>
+  </ul>
+
+  <h2>6. Capacidad y materiales admitidos</h2>
+  <p><strong>Capacidad máxima del telesaco:</strong> 1.000 kg.</p>
+  <p><strong>Se admite únicamente:</strong></p>
+  <ul>
+    <li>Escombro de obra en general</li>
+    <li>Azulejos y gres</li>
+    <li>Ladrillo y bloques</li>
+    <li>Mortero y cemento fraguado</li>
+    <li>Hormigón</li>
+    <li>Yeso y escayola</li>
+    <li>Cerámica</li>
+  </ul>
+  <p><strong>No se admite bajo ningún concepto:</strong></p>
+  <ul>
+    <li>Vidrio (ventanas, espejos, cristales)</li>
+    <li>Pintura sólida ni envases de pintura</li>
+    <li>Residuos peligrosos o tóxicos</li>
+    <li>Residuos orgánicos</li>
+    <li>Restos de poda o jardinería en general</li>
+    <li>Electrodomésticos o aparatos eléctricos</li>
+    <li>Muebles o enseres del hogar</li>
+    <li>Plásticos, papel o cartón</li>
+    <li>Cualquier residuo no clasificado como RCD inerte</li>
+  </ul>
+  <p>El incumplimiento de estas restricciones faculta a Telesaco a cobrar un suplemento por gestión de residuos no admitidos o a rechazar la recogida del saco o contenedor.</p>
+
+  <h2>7. Recogida y plazo de estancia</h2>
+  <ul>
+    <li><strong>Telesaco (saco de escombro):</strong> el cliente solicita la recogida cuando el saco esté lleno o cuando ya no lo necesite. No hay plazo mínimo ni máximo estipulado salvo acuerdo expreso.</li>
+    <li><strong>Contenedores:</strong> el plazo máximo de estancia en el domicilio o vía pública es de <strong>2 semanas (14 días naturales)</strong> desde la fecha de entrega. Superado este plazo, Telesaco podrá cobrar un cargo adicional por día de permanencia o proceder a la recogida de forma unilateral previo aviso.</li>
+  </ul>
+
+  <h2>8. Cancelaciones y devoluciones</h2>
+  <ul>
+    <li><strong>Cancelación antes de la entrega:</strong> el cliente puede cancelar el pedido sin coste alguno siempre que lo comunique antes de que el vehículo haya salido a realizar la entrega. Se realizará el reembolso íntegro en un plazo de 5–10 días hábiles.</li>
+    <li><strong>Cancelación tras la entrega:</strong> una vez entregado el saco o contenedor, no procede devolución del importe abonado, salvo error imputable a Telesaco.</li>
+    <li><strong>Error en el pedido:</strong> si el producto entregado no se corresponde con el pedido confirmado, Telesaco realizará la corrección sin coste adicional y, si no fuera posible, procederá al reembolso íntegro.</li>
+  </ul>
+  <p>Para gestionar cualquier incidencia, contacta por teléfono en <a href="tel:+34655416425">655 416 425</a> o por correo en <a href="mailto:info@telesacoadomicilio.com">info@telesacoadomicilio.com</a>.</p>
+
+  <h2>9. Responsabilidad</h2>
+  <p>Telesaco no se hace responsable de:</p>
+  <ul>
+    <li>Daños causados por el peso excesivo del saco o contenedor si se supera la capacidad máxima indicada.</li>
+    <li>Sanciones administrativas derivadas de la ausencia de licencia de ocupación de la vía pública.</li>
+    <li>Daños a superficies (suelos, jardines, pavimentos) por la colocación del saco o contenedor cuando el cliente haya indicado expresamente el lugar de colocación.</li>
+    <li>Retrasos en la entrega causados por condiciones meteorológicas adversas, cortes de tráfico o causas de fuerza mayor.</li>
+  </ul>
+  <p>La responsabilidad máxima de Telesaco en cualquier reclamación queda limitada al importe abonado por el pedido en cuestión.</p>
+
+  <h2>10. Propiedad del saco y el contenedor</h2>
+  <p>El saco de escombro y el contenedor metálico son en todo momento propiedad de Telesaco a Domicilio Madrid. El cliente los recibe en régimen de <strong>alquiler</strong> y debe devolverlos en las mismas condiciones de uso, sin daños intencionados. La pérdida o deterioro grave podrá dar lugar al cobro del coste de reposición.</p>
+
+  <h2>11. Gestión de residuos</h2>
+  <p>Telesaco actúa como <strong>gestor autorizado de Residuos de Construcción y Demolición (RCDs)</strong> conforme a la normativa española vigente. Los residuos recogidos son trasladados a instalaciones autorizadas para su tratamiento, reciclaje o disposición controlada. A petición del cliente, se puede facilitar el certificado de gestión de residuos.</p>
+
+  <h2>12. Ley aplicable y jurisdicción</h2>
+  <p>Estas condiciones se rigen por la legislación española. Para cualquier controversia que pudiera derivarse de la prestación del servicio, las partes se someten a los Juzgados y Tribunales de la ciudad de Madrid, con renuncia expresa a cualquier otro fuero que pudiera corresponderles.</p>
+
+  <h2>13. Modificaciones</h2>
+  <p>Telesaco se reserva el derecho a modificar estas condiciones en cualquier momento. Los cambios se publicarán en esta página con indicación de la fecha de actualización. El uso del servicio tras la publicación de los cambios implica la aceptación de las nuevas condiciones.</p>
+
+</main>
+
+<footer class="ft">
+  &copy; 2026 Telesaco a Domicilio Madrid &nbsp;·&nbsp;
+  <a href="index.html">Inicio</a>
+  <a href="politica-privacidad.html">Política de Privacidad</a>
+  <a href="condiciones-servicio.html">Condiciones de Servicio</a>
+</footer>
+
+</body>
+</html>
