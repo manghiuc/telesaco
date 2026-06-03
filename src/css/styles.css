@@ -646,46 +646,188 @@ ul,ol{ list-style:none; padding:0; margin:0; }
   background: var(--paper-2);
 }
 
-/* Telesaco municipality grid */
-.saco-towns {
+/* ===== Municipalities — premium block ===== */
+.towns {
   max-width: var(--container);
-  margin: 0 auto 52px;
-  background: #1a1a1a;
-  border: 1px solid #2e2e2e;
-  border-radius: 12px;
-  padding: 28px 32px 32px;
+  margin: 0 auto 64px;
+  position: relative;
+  background:
+    radial-gradient(900px 360px at 100% -10%, rgba(255, 212, 0, .07), transparent 60%),
+    radial-gradient(700px 280px at 0% 110%, rgba(255, 212, 0, .04), transparent 60%),
+    #141414;
+  border: 1px solid #262626;
+  border-radius: 20px;
+  padding: clamp(28px, 5vw, 44px) clamp(24px, 5vw, 48px);
+  overflow: hidden;
 }
-.saco-towns__label {
+.towns::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(rgba(255, 212, 0, .04) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(255, 212, 0, .04) 1px, transparent 1px);
+  background-size: 32px 32px;
+  mask-image: radial-gradient(ellipse at center, #000 30%, transparent 75%);
+  pointer-events: none;
+}
+
+.towns__head {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 28px;
+  flex-wrap: wrap;
+  margin-bottom: 28px;
+  padding-bottom: 28px;
+  border-bottom: 1px dashed #2a2a2a;
+}
+.towns__head-left { max-width: 560px; }
+
+.towns__kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   font-size: 11px;
   font-weight: 700;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
+  color: #0f0f0f;
+  background: var(--y);
+  padding: 6px 12px;
+  border-radius: 999px;
+  margin-bottom: 14px;
+}
+.towns__title {
+  font-family: var(--font-display, 'Archivo Black', sans-serif);
+  font-size: clamp(1.4rem, 2.6vw, 2rem);
+  line-height: 1.18;
+  color: #fff;
+  margin: 0 0 8px;
+  letter-spacing: -0.01em;
+}
+.towns__title em {
+  font-style: normal;
+  background: linear-gradient(180deg, transparent 60%, var(--y) 60%);
+  padding: 0 4px;
+  color: #0f0f0f;
+}
+.towns__sub {
+  font-size: 14px;
+  color: #aaa;
+  margin: 0;
+}
+
+.towns__stats {
+  display: flex;
+  gap: 8px;
+}
+.towns__stat {
+  background: #1c1c1c;
+  border: 1px solid #2a2a2a;
+  border-radius: 12px;
+  padding: 12px 16px;
+  text-align: center;
+  min-width: 78px;
+}
+.towns__stat b {
+  display: block;
+  font-family: var(--font-display, 'Archivo Black', sans-serif);
+  font-size: 1.5rem;
+  line-height: 1;
   color: var(--y);
-  margin-bottom: 20px;
+  margin-bottom: 4px;
 }
-.saco-towns__grid {
+.towns__stat span {
+  font-size: 10px;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+}
+
+.towns__grid {
+  position: relative;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  gap: 10px 16px;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 10px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
-.saco-town {
+.town {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
+  padding: 12px 14px;
+  background: #1c1c1c;
+  border: 1px solid #2a2a2a;
+  border-radius: 10px;
   font-size: 14px;
   font-weight: 500;
   color: #e8e8e8;
-  padding: 8px 12px;
-  border-radius: 6px;
-  background: #222;
-  border: 1px solid #2e2e2e;
+  transition: transform .18s ease, border-color .18s ease, background .18s ease, box-shadow .18s ease;
+  cursor: default;
+  position: relative;
 }
-.saco-town__dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--y);
+.town:hover {
+  transform: translateY(-2px);
+  border-color: var(--y);
+  background: #1f1f1f;
+  box-shadow: 0 8px 22px rgba(255, 212, 0, .08);
+}
+.town__pin {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 8px;
+  background: rgba(255, 212, 0, .12);
+  color: var(--y);
   flex-shrink: 0;
+  transition: background .18s ease, transform .18s ease;
+}
+.town:hover .town__pin {
+  background: var(--y);
+  color: #0f0f0f;
+  transform: scale(1.05);
+}
+.town__name {
+  flex: 1;
+  letter-spacing: -0.005em;
+}
+.town__badge {
+  font-size: 11px;
+  color: var(--y);
+  background: rgba(255, 212, 0, .12);
+  padding: 2px 7px;
+  border-radius: 999px;
+  font-weight: 700;
+}
+
+.towns__foot {
+  position: relative;
+  margin: 28px 0 0;
+  font-size: 13px;
+  color: #888;
+  text-align: center;
+  padding-top: 22px;
+  border-top: 1px dashed #2a2a2a;
+}
+.towns__foot a {
+  color: var(--y);
+  text-decoration: none;
+  font-weight: 600;
+  border-bottom: 1px dashed rgba(255, 212, 0, .4);
+}
+.towns__foot a:hover { border-bottom-style: solid; }
+
+@media (max-width: 600px) {
+  .towns__head { gap: 20px; }
+  .towns__stats { width: 100%; justify-content: space-between; }
+  .towns__stat { flex: 1; min-width: 0; padding: 10px 8px; }
+  .towns__stat b { font-size: 1.25rem; }
 }
 
 /* Saco flat price banner */

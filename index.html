@@ -403,24 +403,43 @@
   </div>
 
   <!-- Telesaco municipalities -->
-  <div class="saco-towns">
-    <p class="saco-towns__label">Municipios con servicio de telesaco</p>
-    <div class="saco-towns__grid">
-      <div class="saco-town"><span class="saco-town__dot"></span>Alcorcón</div>
-      <div class="saco-town"><span class="saco-town__dot"></span>Arganda del Rey</div>
-      <div class="saco-town"><span class="saco-town__dot"></span>Coslada</div>
-      <div class="saco-town"><span class="saco-town__dot"></span>Fuenlabrada</div>
-      <div class="saco-town"><span class="saco-town__dot"></span>Getafe</div>
-      <div class="saco-town"><span class="saco-town__dot"></span>Leganés</div>
-      <div class="saco-town"><span class="saco-town__dot"></span>Madrid Capital</div>
-      <div class="saco-town"><span class="saco-town__dot"></span>Móstoles</div>
-      <div class="saco-town"><span class="saco-town__dot"></span>Parla</div>
-      <div class="saco-town"><span class="saco-town__dot"></span>Pozuelo de Alarcón</div>
-      <div class="saco-town"><span class="saco-town__dot"></span>Rivas Vaciamadrid</div>
-      <div class="saco-town"><span class="saco-town__dot"></span>San Fernando de Henares</div>
-      <div class="saco-town"><span class="saco-town__dot"></span>San Sebastián de los Reyes</div>
+  <section class="towns">
+    <div class="towns__head">
+      <div class="towns__head-left">
+        <span class="towns__kicker">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 0 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg>
+          Cobertura
+        </span>
+        <h3 class="towns__title">Tu saco llega <em>mañana</em> en estos 13 municipios</h3>
+        <p class="towns__sub">Precio único de 50&nbsp;€. Entrega y recogida incluidas.</p>
+      </div>
+      <div class="towns__stats" aria-hidden="true">
+        <div class="towns__stat"><b>13</b><span>municipios</span></div>
+        <div class="towns__stat"><b>24h</b><span>entrega</span></div>
+        <div class="towns__stat"><b>50€</b><span>precio fijo</span></div>
+      </div>
     </div>
-  </div>
+
+    <ul class="towns__grid" role="list">
+      <li class="town"><span class="town__pin"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 0 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg></span><span class="town__name">Madrid Capital</span><span class="town__badge">★</span></li>
+      <li class="town"><span class="town__pin"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 0 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg></span><span class="town__name">Alcorcón</span></li>
+      <li class="town"><span class="town__pin"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 0 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg></span><span class="town__name">Móstoles</span></li>
+      <li class="town"><span class="town__pin"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 0 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg></span><span class="town__name">Getafe</span></li>
+      <li class="town"><span class="town__pin"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 0 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg></span><span class="town__name">Leganés</span></li>
+      <li class="town"><span class="town__pin"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 0 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg></span><span class="town__name">Fuenlabrada</span></li>
+      <li class="town"><span class="town__pin"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 0 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg></span><span class="town__name">Pozuelo de Alarcón</span></li>
+      <li class="town"><span class="town__pin"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 0 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg></span><span class="town__name">Parla</span></li>
+      <li class="town"><span class="town__pin"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 0 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg></span><span class="town__name">Coslada</span></li>
+      <li class="town"><span class="town__pin"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 0 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg></span><span class="town__name">Rivas-Vaciamadrid</span></li>
+      <li class="town"><span class="town__pin"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 0 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg></span><span class="town__name">Arganda del Rey</span></li>
+      <li class="town"><span class="town__pin"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 0 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg></span><span class="town__name">San Fernando de Henares</span></li>
+      <li class="town"><span class="town__pin"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 0 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg></span><span class="town__name">San Sebastián de los Reyes</span></li>
+    </ul>
+
+    <p class="towns__foot">
+      ¿No ves tu municipio? Tenemos <a href="#contenedores">contenedores metálicos</a> en toda la Comunidad de Madrid.
+    </p>
+  </section>
 
   <!-- Container zones -->
   <p class="zones__kicker">Contenedores metálicos · Precio por zona</p>
