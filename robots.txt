@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /success
+Disallow: /success.html
+Disallow: /.netlify/
+
+Sitemap: https://telesacoenmadrid.es/sitemap.xml
