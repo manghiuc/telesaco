@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 120" width="800" height="240">
+  <!-- Icono cubo amarillo -->
+  <rect x="10" y="20" width="80" height="80" rx="14" fill="#FFD400"/>
+  <path d="M28 44 H72 L64 88 H36 Z" fill="#0f0f0f"/>
+  <path d="M36 56 H64" stroke="#FFD400" stroke-width="3"/>
+
+  <!-- Texto -->
+  <text x="110" y="60" font-family="Arial Black, sans-serif" font-size="36" font-weight="900" fill="#0f0f0f">TELESACO</text>
+  <text x="110" y="92" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="500" fill="#666" letter-spacing="1">a domicilio · Madrid</text>
+</svg>
