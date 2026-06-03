@@ -5,6 +5,7 @@
 [functions]
   node_bundler = "esbuild"
 
+# ===== Legal pages (URLs limpias) =====
 [[redirects]]
   from = "/politica-privacidad"
   to   = "/politica-privacidad.html"
@@ -20,6 +21,95 @@
   to   = "/aviso-legal.html"
   status = 200
 
+# ===== Páginas info =====
+[[redirects]]
+  from = "/sobre-nosotros"
+  to   = "/sobre-nosotros.html"
+  status = 200
+
+[[redirects]]
+  from = "/contacto"
+  to   = "/contacto.html"
+  status = 200
+
+# ===== Pillar pages =====
+[[redirects]]
+  from = "/sacos-escombro-madrid"
+  to   = "/sacos-escombro-madrid.html"
+  status = 200
+
+[[redirects]]
+  from = "/contenedores-escombro-madrid"
+  to   = "/contenedores-escombro-madrid.html"
+  status = 200
+
+# ===== Landings por municipio - SACO =====
+[[redirects]]
+  from = "/saco-escombro-madrid-capital"
+  to   = "/saco-escombro-madrid-capital.html"
+  status = 200
+
+[[redirects]]
+  from = "/saco-escombro-alcorcon"
+  to   = "/saco-escombro-alcorcon.html"
+  status = 200
+
+[[redirects]]
+  from = "/saco-escombro-mostoles"
+  to   = "/saco-escombro-mostoles.html"
+  status = 200
+
+[[redirects]]
+  from = "/saco-escombro-getafe"
+  to   = "/saco-escombro-getafe.html"
+  status = 200
+
+[[redirects]]
+  from = "/saco-escombro-leganes"
+  to   = "/saco-escombro-leganes.html"
+  status = 200
+
+[[redirects]]
+  from = "/saco-escombro-fuenlabrada"
+  to   = "/saco-escombro-fuenlabrada.html"
+  status = 200
+
+[[redirects]]
+  from = "/saco-escombro-pozuelo-de-alarcon"
+  to   = "/saco-escombro-pozuelo-de-alarcon.html"
+  status = 200
+
+[[redirects]]
+  from = "/saco-escombro-rivas-vaciamadrid"
+  to   = "/saco-escombro-rivas-vaciamadrid.html"
+  status = 200
+
+[[redirects]]
+  from = "/saco-escombro-coslada"
+  to   = "/saco-escombro-coslada.html"
+  status = 200
+
+[[redirects]]
+  from = "/saco-escombro-arganda-del-rey"
+  to   = "/saco-escombro-arganda-del-rey.html"
+  status = 200
+
+[[redirects]]
+  from = "/saco-escombro-parla"
+  to   = "/saco-escombro-parla.html"
+  status = 200
+
+[[redirects]]
+  from = "/saco-escombro-san-sebastian-de-los-reyes"
+  to   = "/saco-escombro-san-sebastian-de-los-reyes.html"
+  status = 200
+
+[[redirects]]
+  from = "/saco-escombro-san-fernando-de-henares"
+  to   = "/saco-escombro-san-fernando-de-henares.html"
+  status = 200
+
+# ===== Headers CORS para funciones =====
 [[headers]]
   for = "/.netlify/functions/*"
   [headers.values]

@@ -8,21 +8,24 @@
     <priority>1.0</priority>
   </url>
 
+  <!-- LANDINGS POR MUNICIPIO - SACO -->
+  <url><loc>https://telesacoenmadrid.es/saco-escombro-madrid-capital</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://telesacoenmadrid.es/saco-escombro-alcorcon</loc><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://telesacoenmadrid.es/saco-escombro-mostoles</loc><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://telesacoenmadrid.es/saco-escombro-getafe</loc><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://telesacoenmadrid.es/saco-escombro-leganes</loc><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://telesacoenmadrid.es/saco-escombro-fuenlabrada</loc><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://telesacoenmadrid.es/saco-escombro-pozuelo-de-alarcon</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://telesacoenmadrid.es/saco-escombro-rivas-vaciamadrid</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://telesacoenmadrid.es/saco-escombro-coslada</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://telesacoenmadrid.es/saco-escombro-arganda-del-rey</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://telesacoenmadrid.es/saco-escombro-parla</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://telesacoenmadrid.es/saco-escombro-san-sebastian-de-los-reyes</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://telesacoenmadrid.es/saco-escombro-san-fernando-de-henares</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+
   <!-- LEGAL -->
-  <url>
-    <loc>https://telesacoenmadrid.es/condiciones</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-  <url>
-    <loc>https://telesacoenmadrid.es/politica-privacidad</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-  <url>
-    <loc>https://telesacoenmadrid.es/aviso-legal</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
+  <url><loc>https://telesacoenmadrid.es/condiciones</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://telesacoenmadrid.es/politica-privacidad</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://telesacoenmadrid.es/aviso-legal</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
 
 </urlset>
