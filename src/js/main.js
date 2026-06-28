@@ -157,7 +157,7 @@
         throw new Error(data.error || 'Error desconocido');
       }
     } catch (err) {
-      alert('No se pudo conectar con el sistema de pago.\nLl\u00e1manos al 655 416 425 para hacer tu pedido.');
+      alert('No se pudo conectar con el sistema de pago.\nLl\u00e1manos al 677 882 716 para hacer tu pedido.');
       orderBtn.disabled = false;
       orderBtn.textContent = 'Continuar al pago \u2192';
     }
