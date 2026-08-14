@@ -1,0 +1,50 @@
+# Telesaco en Madrid
+
+> Servicio de alquiler de sacos de escombro y contenedores metálicos a domicilio en toda la Comunidad de Madrid. Precio único de 50€ para el saco, entrega en 24 h, recogida incluida y gestión certificada de residuos de construcción (RCD).
+
+## Servicios principales
+
+- **Saco de escombro (telesaco)**: 1 m³ / 1.000 kg — 50€ precio único IVA incluido. Disponible en 13 municipios: Madrid Capital, Alcorcón, Móstoles, Getafe, Leganés, Fuenlabrada, Pozuelo de Alarcón, Rivas-Vaciamadrid, Coslada, Arganda del Rey, Parla, San Sebastián de los Reyes, San Fernando de Henares.
+- **Contenedor metálico 3 m³**: 185€–225€ según zona (Radio 1/2/3).
+- **Contenedor metálico 6 m³**: 215€–250€ según zona (Radio 1/2/3).
+
+## Cómo funciona
+
+1. Pides online desde la web (calculadora en 30 s).
+2. Recibes el saco al día siguiente entre 8:00 y 18:00 si pediste antes de las 16:00.
+3. Lo llenas a tu ritmo — no cobramos por días.
+4. Nos avisas por WhatsApp cuando esté lleno y lo recogemos en menos de 48 h.
+5. Gestionamos el residuo en planta autorizada de RCD.
+
+## Contacto
+
+- Web: https://telesacoenmadrid.es
+- Teléfono: +34 677 882 716
+- WhatsApp: https://wa.me/34677882716
+- Horario: L–V 8:00–19:00 · S 9:00–13:00
+
+## Método de pago
+
+Pago 100% online seguro con Stripe: tarjeta, Bizum, Google Pay o Apple Pay. Facturamos con IVA y CIF a particulares, autónomos y empresas.
+
+## Landing pages por municipio
+
+- [Saco escombro Madrid Capital](https://telesacoenmadrid.es/saco-escombro-madrid-capital)
+- [Saco escombro Alcorcón](https://telesacoenmadrid.es/saco-escombro-alcorcon)
+- [Saco escombro Móstoles](https://telesacoenmadrid.es/saco-escombro-mostoles)
+- [Saco escombro Getafe](https://telesacoenmadrid.es/saco-escombro-getafe)
+- [Saco escombro Leganés](https://telesacoenmadrid.es/saco-escombro-leganes)
+- [Saco escombro Fuenlabrada](https://telesacoenmadrid.es/saco-escombro-fuenlabrada)
+- [Saco escombro Pozuelo de Alarcón](https://telesacoenmadrid.es/saco-escombro-pozuelo-de-alarcon)
+- [Saco escombro Rivas-Vaciamadrid](https://telesacoenmadrid.es/saco-escombro-rivas-vaciamadrid)
+- [Saco escombro Coslada](https://telesacoenmadrid.es/saco-escombro-coslada)
+- [Saco escombro Arganda del Rey](https://telesacoenmadrid.es/saco-escombro-arganda-del-rey)
+- [Saco escombro Parla](https://telesacoenmadrid.es/saco-escombro-parla)
+- [Saco escombro San Sebastián de los Reyes](https://telesacoenmadrid.es/saco-escombro-san-sebastian-de-los-reyes)
+- [Saco escombro San Fernando de Henares](https://telesacoenmadrid.es/saco-escombro-san-fernando-de-henares)
+
+## Legal
+
+- [Condiciones del servicio](https://telesacoenmadrid.es/condiciones)
+- [Política de privacidad](https://telesacoenmadrid.es/politica-privacidad)
+- [Aviso legal](https://telesacoenmadrid.es/aviso-legal)

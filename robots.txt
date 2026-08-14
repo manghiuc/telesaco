@@ -2,6 +2,17 @@ User-agent: *
 Allow: /
 Disallow: /success
 Disallow: /success.html
+Disallow: /page/
 Disallow: /.netlify/
+Disallow: /netlify/
+Disallow: /scripts/
+
+# Bloqueo bots agresivos
+User-agent: SemrushBot
+Disallow: /
+User-agent: AhrefsBot
+Disallow: /
+User-agent: MJ12bot
+Disallow: /
 
 Sitemap: https://telesacoenmadrid.es/sitemap.xml

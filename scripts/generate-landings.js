@@ -5,118 +5,108 @@ const fs = require('fs');
 const path = require('path');
 
 const municipios = [
-  {
-    slug: 'alcorcon',
-    nombre: 'Alcorcón',
-    nombreLargo: 'Alcorcón',
+  { slug: 'alcorcon', nombre: 'Alcorcón', nombreLargo: 'Alcorcón',
     barrios: ['Centro', 'San José de Valderas', 'Parque de Lisboa', 'Las Retamas', 'Las Bayonas', 'Parque Oeste', 'Parque Ondarreta'],
     contexto: 'Alcorcón es uno de los municipios con más actividad de reformas del sur de Madrid. Sus comunidades de vecinos suelen tener patios y plazas interiores que facilitan dejar el saco en propiedad privada sin necesidad de permiso municipal.',
-    poblacion: '169.000',
-    distancia: 'a 13 km del centro de Madrid',
+    poblacion: '169.000', distancia: 'a 13 km del centro de Madrid',
+    metaTitle: 'Saco de escombro Alcorcón 50€ · Entrega 24h a domicilio',
+    metaDesc: 'Alquiler de saco de escombro en Alcorcón desde 50€ con entrega en 24 h. Recogida incluida en Centro, San José de Valderas, Parque de Lisboa y toda la ciudad.',
+    ogTitle: 'Telesaco Alcorcón · 50€ con entrega 24h', h1: '¿Necesitas un saco de escombro en Alcorcón hoy?',
   },
-  {
-    slug: 'mostoles',
-    nombre: 'Móstoles',
-    nombreLargo: 'Móstoles',
+  { slug: 'mostoles', nombre: 'Móstoles', nombreLargo: 'Móstoles',
     barrios: ['Centro', 'Parque Coimbra', 'Estoril II', 'El Soto', 'Pinares Llanos', 'Norte-Universidad', 'Hospital', 'Iviasa'],
     contexto: 'Móstoles es la tercera ciudad de la Comunidad de Madrid. Con muchas urbanizaciones tipo chalet en barrios como Parque Coimbra o El Soto, es ideal para dejar el telesaco en propiedad privada sin trámites.',
-    poblacion: '209.000',
-    distancia: 'a 18 km del centro de Madrid',
+    poblacion: '209.000', distancia: 'a 18 km del centro de Madrid',
+    metaTitle: 'Saco escombro Móstoles 50€ · Reparto 24h en toda la ciudad',
+    metaDesc: 'Saco de escombro a domicilio en Móstoles por 50€. Cubrimos Parque Coimbra, El Soto, Estoril, Centro y todas las urbanizaciones. Entrega en 24 h.',
+    ogTitle: 'Telesaco Móstoles · 50€ IVA incluido', h1: 'Alquila tu saco de escombro en Móstoles',
   },
-  {
-    slug: 'getafe',
-    nombre: 'Getafe',
-    nombreLargo: 'Getafe',
+  { slug: 'getafe', nombre: 'Getafe', nombreLargo: 'Getafe',
     barrios: ['Centro', 'Sector III', 'Buenavista', 'Las Margaritas', 'San Isidro', 'Perales del Río', 'Los Molinos-Manzanares', 'El Bercial', 'Juan de la Cierva'],
     contexto: 'Getafe combina zona industrial activa (polígonos de Los Olivos, El Lomo) con barrios residenciales de bloques y unifamiliares. Damos servicio tanto a particulares como a empresas con factura inmediata.',
-    poblacion: '188.000',
-    distancia: 'a 14 km del centro de Madrid',
+    poblacion: '188.000', distancia: 'a 14 km del centro de Madrid',
+    metaTitle: 'Saco de escombro Getafe 50€ · Particulares y empresas',
+    metaDesc: 'Alquiler de saco de escombro en Getafe por 50€. Sector III, Buenavista, Perales del Río, El Bercial. Factura para empresas y polígonos. Entrega 24h.',
+    ogTitle: 'Telesaco Getafe · Servicio a domicilio y polígonos', h1: 'Tu saco de escombro en Getafe, mañana en casa',
   },
-  {
-    slug: 'leganes',
-    nombre: 'Leganés',
-    nombreLargo: 'Leganés',
+  { slug: 'leganes', nombre: 'Leganés', nombreLargo: 'Leganés',
     barrios: ['Centro', 'Zarzaquemada', 'Vereda de los Estudiantes', 'La Fortuna', 'Solagua', 'San Nicasio', 'El Carrascal', 'Polígono Norte'],
     contexto: 'Leganés es uno de los municipios con más reformas residenciales del sur. Sus barrios maduros (Zarzaquemada, San Nicasio) tienen muchas comunidades en renovación, perfectas para el telesaco.',
-    poblacion: '187.000',
-    distancia: 'a 11 km del centro de Madrid',
+    poblacion: '187.000', distancia: 'a 11 km del centro de Madrid',
+    metaTitle: 'Saco escombro Leganés 50€ · Entrega mañana',
+    metaDesc: 'Saco de escombro en Leganés por 50€ con recogida incluida. Cubrimos Zarzaquemada, San Nicasio, La Fortuna, Centro y todo el municipio.',
+    ogTitle: 'Telesaco Leganés · 50€ y entrega 24h', h1: 'Reformas en Leganés: alquila tu saco de escombro',
   },
-  {
-    slug: 'fuenlabrada',
-    nombre: 'Fuenlabrada',
-    nombreLargo: 'Fuenlabrada',
+  { slug: 'fuenlabrada', nombre: 'Fuenlabrada', nombreLargo: 'Fuenlabrada',
     barrios: ['Centro', 'Loranca', 'Naranjo', 'El Vivero', 'Cerro Palomera', 'Hospital', 'El Molino'],
     contexto: 'Fuenlabrada tiene una densa zona residencial con bloques de los años 80 y 90 en plena fase de renovación. Damos servicio tanto en barrios consolidados como en urbanizaciones recientes tipo Loranca.',
-    poblacion: '191.000',
-    distancia: 'a 20 km del centro de Madrid',
+    poblacion: '191.000', distancia: 'a 20 km del centro de Madrid',
+    metaTitle: 'Saco de escombro Fuenlabrada 50€ · Entrega en 24 horas',
+    metaDesc: 'Telesaco a domicilio en Fuenlabrada por 50€. Cubrimos Loranca, Cerro Palomera, Naranjo, Centro y toda la ciudad. Recogida gratuita incluida.',
+    ogTitle: 'Telesaco Fuenlabrada · Precio único 50€', h1: 'El saco de escombro más rápido en Fuenlabrada',
   },
-  {
-    slug: 'pozuelo-de-alarcon',
-    nombre: 'Pozuelo de Alarcón',
-    nombreLargo: 'Pozuelo de Alarcón',
+  { slug: 'pozuelo-de-alarcon', nombre: 'Pozuelo de Alarcón', nombreLargo: 'Pozuelo de Alarcón',
     barrios: ['Estación', 'La Cabaña', 'Húmera', 'Somosaguas', 'Monteclaro', 'Los Mochuelos', 'Prado de Somosaguas'],
     contexto: 'Pozuelo de Alarcón es un municipio de chalets y urbanizaciones con mucha actividad de reformas premium. La mayoría de viviendas permiten dejar el saco en parcela privada sin trámites.',
-    poblacion: '87.000',
-    distancia: 'a 14 km del centro de Madrid',
+    poblacion: '87.000', distancia: 'a 14 km del centro de Madrid',
+    metaTitle: 'Saco escombro Pozuelo de Alarcón · 50€ y sin permisos',
+    metaDesc: 'Saco de escombro en Pozuelo de Alarcón por 50€. Servicio en Somosaguas, Monteclaro, Húmera, Estación. Ideal para chalets con parcela privada.',
+    ogTitle: 'Telesaco Pozuelo · Reformas en tu chalet', h1: 'Reformas en Pozuelo: tu telesaco sin trámites',
   },
-  {
-    slug: 'rivas-vaciamadrid',
-    nombre: 'Rivas-Vaciamadrid',
-    nombreLargo: 'Rivas-Vaciamadrid',
+  { slug: 'rivas-vaciamadrid', nombre: 'Rivas-Vaciamadrid', nombreLargo: 'Rivas-Vaciamadrid',
     barrios: ['Rivas Centro', 'Covibar', 'Pablo Iglesias', 'La Luna', 'Ciudadela', 'La Esperanza', 'El Cristo'],
     contexto: 'Rivas-Vaciamadrid es el municipio joven por excelencia del sureste de Madrid. Mayoría de bloques modernos y dúplex con espacio en garaje o trastero para el telesaco, simplificando la logística.',
-    poblacion: '100.000',
-    distancia: 'a 17 km del centro de Madrid',
+    poblacion: '100.000', distancia: 'a 17 km del centro de Madrid',
+    metaTitle: 'Saco de escombro Rivas-Vaciamadrid 50€ · Entrega 24h',
+    metaDesc: 'Telesaco a domicilio en Rivas-Vaciamadrid por 50€. Cubrimos Covibar, Pablo Iglesias, La Luna, Rivas Centro. Recogida incluida.',
+    ogTitle: 'Telesaco Rivas · 50€ y recogida gratis', h1: 'Saco de escombro en Rivas, sin salir de casa',
   },
-  {
-    slug: 'coslada',
-    nombre: 'Coslada',
-    nombreLargo: 'Coslada',
+  { slug: 'coslada', nombre: 'Coslada', nombreLargo: 'Coslada',
     barrios: ['El Cerro', 'La Estación', 'Ciudad 70', 'San Pablo', 'Rincón de la Vega', 'Valleaguado', 'Avenida de Madrid'],
     contexto: 'Coslada es un municipio compacto del Corredor del Henares con muchas reformas en bloques históricos. Ideal para el telesaco por la cercanía a Madrid capital y la facilidad de aparcamiento.',
-    poblacion: '81.000',
-    distancia: 'a 12 km del centro de Madrid',
+    poblacion: '81.000', distancia: 'a 12 km del centro de Madrid',
+    metaTitle: 'Saco escombro Coslada 50€ · Reforma exprés en el Corredor',
+    metaDesc: 'Saco de escombro en Coslada por 50€ con entrega 24h. El Cerro, Ciudad 70, San Pablo, La Estación. Recogida y reciclaje incluidos.',
+    ogTitle: 'Telesaco Coslada · Corredor del Henares', h1: 'Coslada: alquiler de saco escombro por 50€',
   },
-  {
-    slug: 'arganda-del-rey',
-    nombre: 'Arganda del Rey',
-    nombreLargo: 'Arganda del Rey',
+  { slug: 'arganda-del-rey', nombre: 'Arganda del Rey', nombreLargo: 'Arganda del Rey',
     barrios: ['Centro', 'Mirador del Henares', 'La Poveda', 'El Quinto Don Pedro', 'Valdearganda', 'Los Almendros'],
     contexto: 'Arganda del Rey combina núcleo histórico con urbanizaciones nuevas como Valdearganda. Damos servicio a las zonas más alejadas del sureste con el mismo precio único de 50€.',
-    poblacion: '56.000',
-    distancia: 'a 27 km del centro de Madrid',
+    poblacion: '56.000', distancia: 'a 27 km del centro de Madrid',
+    metaTitle: 'Saco escombro Arganda del Rey · 50€ precio único',
+    metaDesc: 'Alquiler de saco de escombro en Arganda del Rey por 50€. Servicio en Valdearganda, La Poveda, Mirador del Henares y Centro.',
+    ogTitle: 'Telesaco Arganda del Rey · Sin sobrecoste', h1: 'Tu saco de escombro en Arganda del Rey',
   },
-  {
-    slug: 'parla',
-    nombre: 'Parla',
-    nombreLargo: 'Parla',
+  { slug: 'parla', nombre: 'Parla', nombreLargo: 'Parla',
     barrios: ['Centro', 'La Laguna', 'Cantueña', 'Las Mestas', 'El Norte', 'El Mirador', 'Las Américas'],
     contexto: 'Parla es uno de los municipios más densos del sur de Madrid. Sus comunidades tienen mucho recorrido de reformas y rehabilitación energética, donde el telesaco es la solución más práctica.',
-    poblacion: '130.000',
-    distancia: 'a 23 km del centro de Madrid',
+    poblacion: '130.000', distancia: 'a 23 km del centro de Madrid',
+    metaTitle: 'Saco de escombro Parla 50€ · Rehabilitación y reformas',
+    metaDesc: 'Telesaco en Parla por 50€ con entrega en 24 h. Cubrimos La Laguna, Cantueña, Las Mestas, Centro y toda la ciudad. Recogida incluida.',
+    ogTitle: 'Telesaco Parla · 50€ y sin complicaciones', h1: 'Alquila un saco de escombro en Parla',
   },
-  {
-    slug: 'san-sebastian-de-los-reyes',
-    nombre: 'San Sebastián de los Reyes',
-    nombreLargo: 'San Sebastián de los Reyes',
+  { slug: 'san-sebastian-de-los-reyes', nombre: 'San Sebastián de los Reyes', nombreLargo: 'San Sebastián de los Reyes',
     barrios: ['Casco Histórico', 'Tempranales', 'Dehesa Vieja', 'Rosa Luxemburgo', 'San Vicente Paúl', 'El Trigal'],
     contexto: 'San Sebastián de los Reyes es un municipio del norte de Madrid con mezcla de viviendas históricas en el Casco y urbanizaciones modernas tipo Tempranales. Damos servicio puntual con un único día de entrega.',
-    poblacion: '90.000',
-    distancia: 'a 19 km del centro de Madrid',
+    poblacion: '90.000', distancia: 'a 19 km del centro de Madrid',
+    metaTitle: 'Saco escombro San Sebastián de los Reyes · 50€',
+    metaDesc: 'Saco de escombro en San Sebastián de los Reyes por 50€. Cubrimos Casco Histórico, Tempranales, Dehesa Vieja. Entrega en 24 horas.',
+    ogTitle: 'Telesaco Sanse · 50€ IVA incluido', h1: 'Sanse: tu saco de escombro para mañana',
   },
-  {
-    slug: 'san-fernando-de-henares',
-    nombre: 'San Fernando de Henares',
-    nombreLargo: 'San Fernando de Henares',
+  { slug: 'san-fernando-de-henares', nombre: 'San Fernando de Henares', nombreLargo: 'San Fernando de Henares',
     barrios: ['Casco Antiguo', 'La Aldehuela', 'Parque Henares', 'Jarama', 'San Fernando Castillo'],
     contexto: 'San Fernando de Henares es un municipio compacto del Corredor con muchas viviendas de los años 70-80 en pleno proceso de reforma. Ideal para sacos de escombro por la facilidad logística.',
-    poblacion: '41.000',
-    distancia: 'a 17 km del centro de Madrid',
+    poblacion: '41.000', distancia: 'a 17 km del centro de Madrid',
+    metaTitle: 'Saco de escombro San Fernando de Henares · 50€ · 24h',
+    metaDesc: 'Telesaco a domicilio en San Fernando de Henares por 50€. Casco Antiguo, La Aldehuela, Parque Henares. Recogida y reciclaje incluidos.',
+    ogTitle: 'Telesaco San Fernando de Henares', h1: 'San Fernando de Henares: alquiler de saco escombro',
   },
 ];
 
 const renderHTML = (m) => {
   const barriosHTML = m.barrios.map(b => `    <div class="barrio">${b}</div>`).join('\n');
+  const shareURL = `https://telesacoenmadrid.es/saco-escombro-${m.slug}`;
+  const shareText = `Alquiler de saco de escombro en ${m.nombreLargo} desde 50€ · Entrega 24h`;
   return `<!DOCTYPE html>
 <html lang="es">
 <head>
@@ -124,19 +114,21 @@ const renderHTML = (m) => {
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 <meta name="theme-color" content="#0f0f0f" />
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
-<meta name="description" content="Alquiler de saco de escombro en ${m.nombreLargo} desde 50€. Entrega 24h y recogida incluidas. Saco de 1m³ y 1.000 kg. Servicio en ${m.barrios.slice(0,3).join(', ')} y resto del municipio." />
+<meta name="description" content="${m.metaDesc}" />
 
-<title>Saco de Escombro en ${m.nombreLargo} desde 50€ · Entrega 24h | Telesaco</title>
-<link rel="canonical" href="https://telesacoenmadrid.es/saco-escombro-${m.slug}" />
+<title>${m.metaTitle}</title>
+<link rel="canonical" href="${shareURL}" />
 
-<meta property="og:url" content="https://telesacoenmadrid.es/saco-escombro-${m.slug}" />
+<meta property="og:url" content="${shareURL}" />
 <meta property="og:site_name" content="Telesaco en Madrid" />
-<meta property="og:title" content="Saco de escombro en ${m.nombreLargo} desde 50€" />
-<meta property="og:description" content="Saco de escombro a domicilio en ${m.nombreLargo}. Entrega 24h. Recogida incluida. Precio único 50€." />
+<meta property="og:title" content="${m.ogTitle}" />
+<meta property="og:description" content="${m.metaDesc}" />
 <meta property="og:type" content="website" />
 <meta property="og:locale" content="es_ES" />
 <meta property="og:image" content="https://telesacoenmadrid.es/assets/img/og-cover.jpg" />
 <meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="${m.ogTitle}" />
+<meta name="twitter:description" content="${m.metaDesc}" />
 
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2218%22 fill=%22%23ffd400%22/><text x=%2250%22 y=%2272%22 font-family=%22Arial Black%22 font-size=%2272%22 font-weight=%22900%22 text-anchor=%22middle%22 fill=%22%230f0f0f%22>T</text></svg>" />
 
@@ -153,7 +145,27 @@ const renderHTML = (m) => {
   "itemListElement": [
     {"@type":"ListItem","position":1,"name":"Inicio","item":"https://telesacoenmadrid.es/"},
     {"@type":"ListItem","position":2,"name":"Sacos de escombro Madrid","item":"https://telesacoenmadrid.es/sacos-escombro-madrid"},
-    {"@type":"ListItem","position":3,"name":"Saco escombro ${m.nombreLargo}","item":"https://telesacoenmadrid.es/saco-escombro-${m.slug}"}
+    {"@type":"ListItem","position":3,"name":"Saco escombro ${m.nombreLargo}","item":"${shareURL}"}
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "@id": "${shareURL}#business",
+  "name": "Telesaco en Madrid — ${m.nombreLargo}",
+  "url": "${shareURL}",
+  "telephone": "+34677882716",
+  "priceRange": "€€",
+  "currenciesAccepted": "EUR",
+  "paymentAccepted": "Credit Card, Bizum, Google Pay, Apple Pay",
+  "areaServed": {"@type":"City","name":"${m.nombreLargo}","containedInPlace":{"@type":"AdministrativeArea","name":"Comunidad de Madrid"}},
+  "address": {"@type":"PostalAddress","addressLocality":"${m.nombreLargo}","addressRegion":"Comunidad de Madrid","addressCountry":"ES"},
+  "openingHoursSpecification": [
+    {"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"08:00","closes":"19:00"},
+    {"@type":"OpeningHoursSpecification","dayOfWeek":"Saturday","opens":"09:00","closes":"13:00"}
   ]
 }
 </script>
@@ -164,20 +176,9 @@ const renderHTML = (m) => {
   "@type": "Service",
   "name": "Alquiler de saco de escombro en ${m.nombreLargo}",
   "description": "Saco de escombro de 1 m³ y hasta 1.000 kg con entrega 24h y recogida incluida en ${m.nombreLargo}, Comunidad de Madrid.",
-  "provider": {
-    "@type": "LocalBusiness",
-    "name": "Telesaco en Madrid",
-    "telephone": "+34677882716",
-    "url": "https://telesacoenmadrid.es"
-  },
+  "provider": {"@type":"LocalBusiness","name":"Telesaco en Madrid","telephone":"+34677882716","url":"https://telesacoenmadrid.es"},
   "areaServed": {"@type":"City","name":"${m.nombreLargo}","containedInPlace":{"@type":"AdministrativeArea","name":"Comunidad de Madrid"}},
-  "offers": {
-    "@type": "Offer",
-    "price": "50.00",
-    "priceCurrency": "EUR",
-    "availability": "https://schema.org/InStock",
-    "url": "https://telesacoenmadrid.es/saco-escombro-${m.slug}"
-  }
+  "offers": {"@type":"Offer","price":"50.00","priceCurrency":"EUR","availability":"https://schema.org/InStock","url":"${shareURL}"}
 }
 </script>
 
@@ -201,16 +202,13 @@ const renderHTML = (m) => {
 </div>
 
 <header class="hd">
-  <a href="/" class="hd__brand" aria-label="Inicio Telesaco">
+  <a href="/" class="hd__brand" aria-label="Inicio Telesaco en Madrid">
     <svg viewBox="0 0 40 40" width="36" height="36" aria-hidden="true">
       <rect x="2" y="2" width="36" height="36" rx="8" fill="#FFD400"/>
       <path d="M10 12 H30 L26 30 H14 Z" fill="#0f0f0f"/>
       <path d="M14 18 H26" stroke="#FFD400" stroke-width="1.5"/>
     </svg>
-    <span class="hd__name">
-      <strong>TELESACO</strong>
-      <em>en Madrid</em>
-    </span>
+    <span class="hd__name"><strong>TELESACO</strong><em>en Madrid</em></span>
   </a>
   <a href="/#pedir" class="hd__cta">Pedir mi saco</a>
 </header>
@@ -224,10 +222,10 @@ const renderHTML = (m) => {
 <section class="muni-hero">
   <div>
     <span class="muni-hero__badge">📍 ${m.nombreLargo} · ${m.distancia}</span>
-    <h1>Saco de escombro<br/>en <em>${m.nombreLargo}</em><br/>desde 50€</h1>
+    <h1>${m.h1}</h1>
     <p class="muni-hero__sub">
-      Alquiler de saco de escombro de <strong>1 m³ y hasta 1.000 kg</strong> en ${m.nombreLargo}.
-      Entrega en 24 h, recogida cuando avises y gestión completa del residuo en planta autorizada.
+      Te llevamos un saco de escombro de <strong>1 m³ y hasta 1.000 kg</strong> a tu portal en ${m.nombreLargo}.
+      Precio único de 50 €, entrega en 24 h y recogida incluida cuando avises.
     </p>
     <div>
       <a href="/#pedir" class="muni-hero__cta">
@@ -242,9 +240,7 @@ const renderHTML = (m) => {
   </div>
 
   <aside class="muni-hero__card">
-    <div class="muni-hero__price-row">
-      <span class="muni-hero__price-label">Precio único</span>
-    </div>
+    <div class="muni-hero__price-row"><span class="muni-hero__price-label">Precio único</span></div>
     <div class="muni-hero__price">50<i>€</i></div>
     <p class="muni-hero__price-note">+ 5 € envío · gratis desde 3 sacos · IVA incluido</p>
     <div class="muni-hero__features">
@@ -268,15 +264,74 @@ const renderHTML = (m) => {
 
 <article class="muni-section">
 
-  <h2>Saco de escombro a domicilio en <em>${m.nombreLargo}</em></h2>
+  <h2>Alquiler de saco de escombro a domicilio en ${m.nombreLargo}</h2>
+
+  <aside class="tldr" aria-label="Resumen rápido">
+    <span class="tldr__label">Key takeaways</span>
+    <ul>
+      <li><strong>Precio:</strong> 50 € precio único IVA incluido en ${m.nombreLargo} (+5 € envío si pides menos de 3).</li>
+      <li><strong>Plazo:</strong> entrega al día siguiente si pides antes de las 16:00.</li>
+      <li><strong>Recogida:</strong> incluida en el precio, cuando tú avises por WhatsApp.</li>
+      <li><strong>Sin permisos</strong> si dejas el saco en propiedad privada (portal, garaje, jardín).</li>
+      <li><strong>Factura</strong> con IVA y CIF para autónomos y empresas.</li>
+    </ul>
+  </aside>
+
   <p class="lead">
     Si estás haciendo una reforma en ${m.nombreLargo}, no pierdas un sábado yendo al punto limpio. Te llevamos el saco a casa, lo llenas a tu ritmo y te lo recogemos cuando avises. <strong>Precio único 50€, sin sorpresas en factura.</strong>
   </p>
 
-  <h3>Cuánto cuesta el saco en ${m.nombreLargo}</h3>
+  <div class="inline-cta">
+    <div class="inline-cta__text">
+      <b>50 €</b> precio único en ${m.nombreLargo} · entrega en 24 h · recogida incluida.
+    </div>
+    <a href="/#pedir" class="inline-cta__btn">
+      Pedir ahora
+      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+
+  <h3>¿Cuánto cuesta el saco de escombro en ${m.nombreLargo}?</h3>
   <p>
     El precio en ${m.nombreLargo} es <strong>50€ con IVA incluido</strong>, igual que en el resto de los 13 municipios que cubrimos con telesaco. Se añaden 5€ de envío si pides 1 ó 2 sacos; desde 3 sacos el envío es gratuito. La recogida y la gestión completa del residuo en planta autorizada están siempre incluidas en el precio.
   </p>
+
+  <table class="price-table" aria-label="Tabla de precios en ${m.nombreLargo}">
+    <thead>
+      <tr>
+        <th>Producto</th>
+        <th>Capacidad</th>
+        <th>Precio</th>
+        <th>Envío</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Saco de escombro</strong> (1 unidad)</td>
+        <td>1 m³ · 1.000 kg</td>
+        <td class="price-cell">50 €</td>
+        <td>+ 5 €</td>
+      </tr>
+      <tr>
+        <td><strong>Saco de escombro</strong> (3+ unidades)</td>
+        <td>1 m³ · 1.000 kg c/u</td>
+        <td class="price-cell">50 € / ud</td>
+        <td>Gratis</td>
+      </tr>
+      <tr>
+        <td>Contenedor metálico 3 m³</td>
+        <td>3 m³ · 3.000 kg</td>
+        <td class="price-cell">desde 185 €</td>
+        <td>Incluido</td>
+      </tr>
+      <tr>
+        <td>Contenedor metálico 6 m³</td>
+        <td>6 m³ · 6.000 kg</td>
+        <td class="price-cell">desde 215 €</td>
+        <td>Incluido</td>
+      </tr>
+    </tbody>
+  </table>
 
   <h3>El servicio de telesaco en ${m.nombreLargo}</h3>
   <p>${m.contexto}</p>
@@ -290,7 +345,7 @@ const renderHTML = (m) => {
     <li><strong>Gestionamos el residuo</strong> en planta autorizada de RCD.</li>
   </ol>
 
-  <h3>Barrios y zonas de ${m.nombreLargo} donde entregamos</h3>
+  <h3>Barrios de ${m.nombreLargo} con servicio de telesaco</h3>
   <p>Damos servicio en todos los barrios del municipio. Algunos de ellos:</p>
   <div class="barrios">
 ${barriosHTML}
@@ -332,7 +387,27 @@ ${barriosHTML}
   <h3>Qué se puede tirar</h3>
   <p>Sí: azulejos, ladrillo, mortero, hormigón, yeso, escayola, tabiquería, mampostería, madera de obra. No: pinturas, disolventes, amianto, electrodomésticos, vidrio, líquidos, restos orgánicos, jardinería.</p>
 
-  <h2>Preguntas frecuentes · ${m.nombreLargo}</h2>
+  <div class="share" aria-label="Compartir esta página">
+    <span class="share__label">Compartir:</span>
+    <a href="https://wa.me/?text=${encodeURIComponent(shareText + ' → ' + shareURL)}" target="_blank" rel="noopener" class="share__btn share__btn--wa" aria-label="Compartir por WhatsApp">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.52 3.48A11.82 11.82 0 0 0 12 0C5.37 0 .01 5.36.01 11.98c0 2.11.55 4.17 1.6 5.98L0 24l6.2-1.63a11.95 11.95 0 0 0 5.79 1.48h.01c6.62 0 11.99-5.36 11.99-11.98a11.9 11.9 0 0 0-3.47-8.39z"/></svg>
+      WhatsApp
+    </a>
+    <a href="https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareURL)}" target="_blank" rel="noopener" class="share__btn share__btn--tw" aria-label="Compartir en Twitter/X">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      Twitter
+    </a>
+    <a href="https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareURL)}" target="_blank" rel="noopener" class="share__btn share__btn--fb" aria-label="Compartir en Facebook">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073c0 6.019 4.388 11.005 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.078 24 18.092 24 12.073z"/></svg>
+      Facebook
+    </a>
+    <button type="button" class="share__btn" onclick="navigator.clipboard.writeText('${shareURL}').then(()=>this.textContent='¡Copiado!')" aria-label="Copiar enlace">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+      Copiar enlace
+    </button>
+  </div>
+
+  <h2>Preguntas frecuentes sobre el saco de escombro en ${m.nombreLargo}</h2>
   <div class="faq-list">
     <details class="faq-item">
       <summary>¿En qué franja horaria llega el saco a ${m.nombreLargo}?</summary>
@@ -386,7 +461,7 @@ ${barriosHTML}
         <a href="/contenedores-escombro-madrid">Contenedor 6 m³</a>
       </div>
       <div>
-        <h5>Madrid</h5>
+        <h5>Municipios</h5>
         <a href="/saco-escombro-madrid-capital">Madrid Capital</a>
         <a href="/saco-escombro-alcorcon">Alcorcón</a>
         <a href="/saco-escombro-mostoles">Móstoles</a>
@@ -414,7 +489,7 @@ ${barriosHTML}
   </div>
 </footer>
 
-<a href="https://wa.me/34677882716?text=Hola,%20quiero%20un%20telesaco%20en%20${encodeURIComponent(m.nombreLargo)}" class="wsp" target="_blank" rel="noopener" aria-label="WhatsApp">
+<a href="https://wa.me/34677882716?text=Hola,%20quiero%20un%20telesaco%20en%20${encodeURIComponent(m.nombreLargo)}" class="wsp" target="_blank" rel="noopener" aria-label="WhatsApp Telesaco en ${m.nombreLargo}">
   <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M20.52 3.48A11.82 11.82 0 0 0 12 0C5.37 0 .01 5.36.01 11.98c0 2.11.55 4.17 1.6 5.98L0 24l6.2-1.63a11.95 11.95 0 0 0 5.79 1.48h.01c6.62 0 11.99-5.36 11.99-11.98a11.9 11.9 0 0 0-3.47-8.39zM12 21.79h-.01a9.82 9.82 0 0 1-5-1.37l-.36-.21-3.68.97.98-3.59-.24-.37A9.78 9.78 0 0 1 2.2 11.98C2.2 6.58 6.6 2.2 12 2.2c2.62 0 5.08 1.02 6.93 2.87a9.74 9.74 0 0 1 2.88 6.91c0 5.4-4.4 9.81-9.81 9.81z"/></svg>
 </a>
 
