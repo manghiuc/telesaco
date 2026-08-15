@@ -49,7 +49,7 @@ const municipios = [
     barrios: ['Estación', 'La Cabaña', 'Húmera', 'Somosaguas', 'Monteclaro', 'Los Mochuelos', 'Prado de Somosaguas'],
     contexto: 'Pozuelo de Alarcón es un municipio de chalets y urbanizaciones con mucha actividad de reformas premium. La mayoría de viviendas permiten dejar el saco en parcela privada sin trámites.',
     poblacion: '87.000', distancia: 'a 14 km del centro de Madrid',
-    metaTitle: 'Saco escombro Pozuelo de Alarcón · 50€ y sin permisos',
+    metaTitle: 'Saco escombro Pozuelo de Alarcón 50€ · Entrega 24h',
     metaDesc: 'Saco de escombro en Pozuelo de Alarcón por 50€. Servicio en Somosaguas, Monteclaro, Húmera, Estación. Ideal para chalets con parcela privada.',
     ogTitle: 'Telesaco Pozuelo · Reformas en tu chalet', h1: 'Reformas en Pozuelo: tu telesaco sin trámites',
   },
@@ -267,12 +267,11 @@ const renderHTML = (m) => {
   <h2>Alquiler de saco de escombro a domicilio en ${m.nombreLargo}</h2>
 
   <aside class="tldr" aria-label="Resumen rápido">
-    <span class="tldr__label">Key takeaways</span>
+    <span class="tldr__label">Resumen rápido</span>
     <ul>
       <li><strong>Precio:</strong> 50 € precio único IVA incluido en ${m.nombreLargo} (+5 € envío si pides menos de 3).</li>
       <li><strong>Plazo:</strong> entrega al día siguiente si pides antes de las 16:00.</li>
       <li><strong>Recogida:</strong> incluida en el precio, cuando tú avises por WhatsApp.</li>
-      <li><strong>Sin permisos</strong> si dejas el saco en propiedad privada (portal, garaje, jardín).</li>
       <li><strong>Factura</strong> con IVA y CIF para autónomos y empresas.</li>
     </ul>
   </aside>
@@ -366,7 +365,6 @@ ${barriosHTML}
       <ul>
         <li>Ideal para baños, cocinas, picado paredes</li>
         <li>Cabe en aceras anchas y propiedad privada</li>
-        <li>Sin permiso si va en privado</li>
         <li>Sin coste por días de uso</li>
       </ul>
       <div class="compare__price">50<i>€</i></div>

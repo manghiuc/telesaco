@@ -543,7 +543,7 @@ body {
   color: #d0d0d0;
 }
 .inline-cta__text b { color: var(--accent); }
-.inline-cta__btn {
+a.inline-cta__btn {
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -557,7 +557,7 @@ body {
   transition: transform .15s ease;
   white-space: nowrap;
 }
-.inline-cta__btn:hover { transform: translateY(-1px); }
+a.inline-cta__btn:hover { transform: translateY(-1px); color: var(--ink); }
 
 /* ===== Price table ===== */
 .price-table {
@@ -615,7 +615,7 @@ body {
   font-weight: 600;
   margin-right: 4px;
 }
-.share__btn {
+.share__btn, a.share__btn {
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -630,11 +630,11 @@ body {
   cursor: pointer;
   font-family: inherit;
 }
-.share__btn:hover { background: var(--accent); color: var(--ink); border-color: var(--accent); }
+.share__btn:hover, a.share__btn:hover { background: var(--accent); color: var(--ink); border-color: var(--accent); }
 .share__btn svg { width: 14px; height: 14px; }
-.share__btn--wa:hover { background: #25D366; color: #fff; border-color: #25D366; }
-.share__btn--tw:hover { background: #1DA1F2; color: #fff; border-color: #1DA1F2; }
-.share__btn--fb:hover { background: #1877F2; color: #fff; border-color: #1877F2; }
+a.share__btn--wa:hover { background: #25D366; color: #fff; border-color: #25D366; }
+a.share__btn--tw:hover { background: #1DA1F2; color: #fff; border-color: #1DA1F2; }
+a.share__btn--fb:hover { background: #1877F2; color: #fff; border-color: #1877F2; }
 
 /* ===== WhatsApp floating ===== */
 .wsp {
