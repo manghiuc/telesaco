@@ -634,7 +634,8 @@ ul,ol{ list-style:none; padding:0; margin:0; }
   margin-bottom: 8px;
 }
 .stat strong i{ font-style: normal; font-size: 0.5em; opacity: 0.6; }
-.stat span{
+.stat > span{
+  display: block;
   font-size: 12px; font-weight: 600;
   letter-spacing: 0.1em; text-transform: uppercase;
   color: rgba(255,255,255,.6);
