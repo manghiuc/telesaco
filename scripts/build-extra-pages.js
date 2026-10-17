@@ -110,7 +110,7 @@ const pilar = `${head({ title: pilarTitle, desc: pilarDesc, path: '/contenedores
     <span class="hero__orb hero__orb--c" data-parallax="0.18"></span>
     <span class="hero__grid-bg"></span>
     <span class="hero__glow"></span>
-    <img class="hero__float hero__float--cont" src="/assets/img/contenedor.webp" alt="" loading="lazy" decoding="async" width="260" height="260" data-parallax="-0.14" />
+    <img class="hero__float hero__float--cont" src="/assets/img/contenedor.webp" alt="" loading="lazy" decoding="async" width="266" height="155" data-parallax="-0.14" />
   </div>
   <nav class="crumbs" aria-label="Migas de pan">
     <a href="/">Inicio</a><span aria-hidden="true">›</span>

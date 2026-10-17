@@ -6,7 +6,7 @@ const ICONS = `<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+x
 <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" />
 <link rel="manifest" href="/site.webmanifest" />`;
 
-const VERSION = '20261038';
+const VERSION = '20261042';
 
 // Fuentes propias: sin peticiones a Google (RGPD) y con precarga de las dos críticas
 const FONTS = `<link rel="preload" href="/assets/fonts/archivo-black-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
@@ -14,7 +14,7 @@ const FONTS = `<link rel="preload" href="/assets/fonts/archivo-black-latin-400-n
 
 const HEAD_JS = `<script src="/src/js/boot.js?v=${VERSION}"></script>`;
 
-const STYLES = (extra = []) => HEAD_JS + '\n' + ['/src/css/fonts.css', '/src/css/styles.css', '/src/css/fx.css', '/src/css/fx2.css', ...extra]
+const STYLES = (extra = []) => HEAD_JS + '\n' + ['/src/css/site.css', ...extra]
   .map((h) => `<link rel="stylesheet" href="${h}?v=${VERSION}" />`).join('\n');
 
 const ARROW = '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>';
@@ -44,7 +44,7 @@ const top = () => `<a class="skip-link" href="#contenido">Saltar al contenido</a
 <header class="hd" id="hd">
   <a href="/" class="hd__brand" aria-label="Telesaco a domicilio · Madrid, inicio">
     <img class="hd__wm" src="/assets/img/logo-telesaco-completo-claro.svg" alt="Telesaco a domicilio · Madrid" width="190" height="56" />
-    <img class="hd__sack" src="/assets/img/saco-escombro.webp" alt="" width="381" height="400" decoding="async" />
+    <img class="hd__sack" src="/assets/img/saco-escombro-s.webp" alt="" width="240" height="252" decoding="async" />
   </a>
   <nav class="hd__nav" aria-label="Principal">
 ${NAV.map(([h, t]) => `    <a href="${h}">${t}</a>`).join('\n')}

@@ -417,7 +417,7 @@ html.fx-intro::after{
 @keyframes fx-pop2{
   0%{ scale: calc(var(--sc, 1) * .7); } 55%{ scale: calc(var(--sc, 1) * 1.2); } 100%{ scale: var(--sc, 1); }
 }
-.calc .seg button[data-val="saco"]{ --img: url("/assets/img/saco-escombro.webp"); --sc: 1; --dl: 0s; }
+.calc .seg button[data-val="saco"]{ --img: url("/assets/img/saco-escombro-s.webp"); --sc: 1; --dl: 0s; }
 .calc .seg button[data-val="cont3"]{ --img: url("/assets/img/contenedor.webp"); --sc: 1.1; --dl: -1.2s; }
 .calc .seg button[data-val="cont6"]{ --img: url("/assets/img/contenedor.webp"); --sc: 1.4; --dl: -2.4s; }
 
@@ -507,5 +507,21 @@ html.fx-intro::after{
 .hs__img, .hs:nth-child(2) .hs__img, .hs:nth-child(3) .hs__img{
   animation: fx-pop-in .7s var(--ease-out) calc(1.5s + var(--k, 0) * .3s) backwards; transform-origin: 50% 80%;
 }
-@media (hover: hover){ .hs:hover .hs__img{ animation: fx-wiggle2 .6s ease-in-out; } }
+/* Al pasar el ratón solo cambian rotate/scale (nunca la animación: reiniciaría la entrada y la imagen desaparecería) */
+.hs__img{ transition: rotate .4s var(--ease-out), scale .4s var(--ease-out); }
+@media (hover: hover){ .hs:hover .hs__img{ rotate: -9deg; scale: 1.12; } }
 @media (prefers-reduced-motion: reduce){ .hs__img{ animation: none !important; } }
+
+/* ===== Saco y contenedor grandes: junto al formulario, en el hueco de su izquierda (bien visibles) ===== */
+.hero__fx{ --gap: clamp(40px, 6vw, 80px); --calcx: calc(var(--cx) + (100% - 2 * var(--cx) - var(--gap)) * .5454 + var(--gap)); }
+@media (min-width: 1100px) and (max-width: 1279px){ .hero__float{ display: none; } }
+@media (min-width: 1280px){
+  .hero__float--saco{
+    right: auto; left: calc(var(--calcx) - clamp(140px, 11.5vw, 200px) + 26px);
+    width: clamp(130px, 10.5vw, 180px); top: 150px;
+  }
+  .hero__float--cont{
+    right: auto; left: calc(var(--calcx) - clamp(160px, 13vw, 220px) + 26px);
+    width: clamp(150px, 12vw, 210px); top: 960px;
+  }
+}

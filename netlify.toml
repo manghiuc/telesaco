@@ -140,6 +140,12 @@
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
+# CSS y JS siempre se piden con ?v=...: pueden cachearse un año
+[[headers]]
+  for = "/src/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
 [[headers]]
   for = "/assets/img/*"
   [headers.values]

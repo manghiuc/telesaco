@@ -62,8 +62,8 @@ ${C.top()}
     <span class="hero__orb hero__orb--c" data-parallax="0.18"></span>
     <span class="hero__grid-bg"></span>
     <span class="hero__glow"></span>
-    <img class="hero__float hero__float--saco" src="/assets/img/saco-escombro.webp" alt="" loading="lazy" decoding="async" width="220" height="220" data-parallax="0.22" />
-    <img class="hero__float hero__float--cont" src="/assets/img/contenedor.webp" alt="" loading="lazy" decoding="async" width="260" height="260" data-parallax="-0.14" />
+    <img class="hero__float hero__float--saco" src="/assets/img/saco-escombro-s.webp" alt="" loading="eager" fetchpriority="high" decoding="async" width="240" height="252" data-parallax="0.22" />
+    <img class="hero__float hero__float--cont" src="/assets/img/contenedor.webp" alt="" loading="lazy" decoding="async" width="266" height="155" data-parallax="-0.14" />
   </div>
 
   <nav class="crumbs" aria-label="Migas de pan">

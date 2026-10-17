@@ -39,11 +39,8 @@
 <link rel="preload" href="assets/fonts/archivo-black-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="preload" href="assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
 
-<script src="src/js/boot.js?v=20261038"></script>
-<link rel="stylesheet" href="src/css/fonts.css?v=20261038" />
-<link rel="stylesheet" href="src/css/styles.css?v=20261038" />
-<link rel="stylesheet" href="src/css/fx.css?v=20261038" />
-<link rel="stylesheet" href="src/css/fx2.css?v=20261038" />
+<script src="src/js/boot.js?v=20261042"></script>
+<link rel="stylesheet" href="src/css/site.css?v=20261042" />
 
 <!-- ===== Google Analytics 4 =====
      Pega tu ID real reemplazando G-XXXXXXXXXX
@@ -327,7 +324,7 @@
 <header class="hd" id="hd">
   <a href="/" class="hd__brand" aria-label="Telesaco a domicilio · Madrid">
     <img class="hd__wm" src="assets/img/logo-telesaco-completo.svg" alt="Telesaco a domicilio · Madrid" width="190" height="56" />
-    <img class="hd__sack" src="assets/img/saco-escombro.webp" alt="" width="381" height="400" decoding="async" />
+    <img class="hd__sack" src="assets/img/saco-escombro-s.webp" alt="" width="240" height="252" decoding="async" />
   </a>
 
   <nav class="hd__nav">
@@ -365,8 +362,8 @@
     <span class="hero__orb hero__orb--c" data-parallax="0.18"></span>
     <span class="hero__grid-bg"></span>
     <span class="hero__glow"></span>
-    <img class="hero__float hero__float--saco" src="assets/img/saco-escombro.webp" alt="" loading="lazy" decoding="async" width="220" height="220" data-parallax="0.22" />
-    <img class="hero__float hero__float--cont" src="assets/img/contenedor.webp" alt="" loading="lazy" decoding="async" width="260" height="260" data-parallax="-0.14" />
+    <img class="hero__float hero__float--saco" src="assets/img/saco-escombro-s.webp" alt="" loading="eager" fetchpriority="high" decoding="async" width="240" height="252" data-parallax="0.22" />
+    <img class="hero__float hero__float--cont" src="assets/img/contenedor.webp" alt="" loading="lazy" decoding="async" width="266" height="155" data-parallax="-0.14" />
   </div>
 
   <div class="hero__grid">
@@ -399,7 +396,7 @@
             <text><textPath href="#sealPath" textLength="280" lengthAdjust="spacing">ENTREGA EN 24 H · RECOGIDA INCLUIDA · </textPath></text>
           </svg>
           <span class="hero__seal-core">
-            <img src="assets/img/saco-escombro.webp" alt="" width="381" height="400" decoding="async" />
+            <img src="assets/img/saco-escombro-s.webp" alt="" width="240" height="252" decoding="async" />
           </span>
         </div>
       </div>
@@ -422,12 +419,12 @@
           <li class="hs" style="--k:1">
             <span class="hs__n">2</span>
             <div><b>Te lo dejamos</b><small>Al día siguiente si pides antes de las 16:00</small></div>
-            <img class="hs__img" src="assets/img/saco-escombro.webp" alt="" width="54" height="57" loading="lazy" decoding="async" />
+            <img class="hs__img" src="assets/img/saco-escombro-s.webp" alt="" width="240" height="252" loading="lazy" decoding="async" />
           </li>
           <li class="hs" style="--k:2">
             <span class="hs__n">3</span>
             <div><b>Lo llenas y nos avisas</b><small>Lo recogemos en menos de 48 h</small></div>
-            <img class="hs__img hs__img--cont" src="assets/img/contenedor.webp" alt="" width="60" height="60" loading="lazy" decoding="async" />
+            <img class="hs__img hs__img--cont" src="assets/img/contenedor.webp" alt="" width="266" height="155" loading="lazy" decoding="async" />
           </li>
         </ol>
       </div>
@@ -640,7 +637,7 @@
     <article class="prod prod--featured">
       <div class="prod__badge">Más vendido</div>
       <div class="prod__art">
-        <img src="assets/img/saco-escombro.webp" alt="Alquiler de saco de escombro 1 m³ a domicilio en Madrid" loading="lazy" width="400" height="400" />
+        <img src="assets/img/saco-escombro-s.webp" alt="Alquiler de saco de escombro 1 m³ a domicilio en Madrid" loading="lazy" width="240" height="252" />
       </div>
       <h3>Telesaco Estándar</h3>
       <p class="prod__cap">1 m³ · hasta 1.000 kg</p>
@@ -659,7 +656,7 @@
 
     <article class="prod">
       <div class="prod__art">
-        <img src="assets/img/contenedor.webp" alt="Alquiler contenedor metálico de escombro 3 m³ en Madrid" loading="lazy" width="400" height="400" />
+        <img src="assets/img/contenedor.webp" alt="Alquiler contenedor metálico de escombro 3 m³ en Madrid" loading="lazy" width="266" height="155" />
       </div>
       <h3>Contenedor 3 m³</h3>
       <p class="prod__cap">3 m³ · obra mediana</p>
@@ -678,7 +675,7 @@
 
     <article class="prod">
       <div class="prod__art">
-        <img src="assets/img/contenedor.webp" alt="Alquiler contenedor metálico de escombro 6 m³ en Madrid" loading="lazy" width="400" height="400" />
+        <img src="assets/img/contenedor.webp" alt="Alquiler contenedor metálico de escombro 6 m³ en Madrid" loading="lazy" width="266" height="155" />
       </div>
       <h3>Contenedor 6 m³</h3>
       <p class="prod__cap">6 m³ · obra grande</p>
@@ -1144,8 +1141,8 @@
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-<script src="src/js/main.js?v=20261038" defer></script>
-<script src="src/js/fx.js?v=20261038" defer></script>
-<script src="src/js/fx2.js?v=20261038" defer></script>
+<script src="src/js/main.js?v=20261042" defer></script>
+<script src="src/js/fx.js?v=20261042" defer></script>
+<script src="src/js/fx2.js?v=20261042" defer></script>
 </body>
 </html>
