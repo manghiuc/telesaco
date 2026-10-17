@@ -51,7 +51,7 @@
 
   /* ===== Calculator ===== */
   const PRICES = {
-    saco:  { unit: 50, shipping: 5, freeFrom: 3 },
+    saco:  { unit: 55 },
     cont3: { r1: 190, r2: 210, r3: 230 },
     cont6: { r1: 220, r2: 240, r3: 260 }
   };
@@ -96,13 +96,10 @@
   function update() {
     let total;
     if (prod === 'saco') {
-      const hasShipping = qty < PRICES.saco.freeFrom;
-      total = qty * PRICES.saco.unit + (hasShipping ? PRICES.saco.shipping : 0);
+      total = qty * PRICES.saco.unit;
       if (shipNote) {
-        shipNote.textContent  = hasShipping
-          ? `+ ${PRICES.saco.shipping}\u20ac gastos de env\u00edo`
-          : '\u2713 Env\u00edo gratis incluido';
-        shipNote.className = hasShipping ? 'calc__shipping' : 'calc__shipping calc__shipping--free';
+        shipNote.textContent = '\u2713 Sin gastos de env\u00edo';
+        shipNote.className   = 'calc__shipping calc__shipping--free';
       }
     } else {
       total = PRICES[prod][radio] * qty;

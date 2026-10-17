@@ -36,7 +36,7 @@ ${robots.startsWith('noindex') ? '' : `<link rel="canonical" href="${B}${p}" />
 <meta property="og:image" content="${B}/assets/img/og-cover.jpg" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
-<meta property="og:image:alt" content="Telesaco a domicilio en Madrid: saco de escombro desde 50 €" />
+<meta property="og:image:alt" content="Telesaco a domicilio en Madrid: saco de escombro desde 55 €" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="${title}" />
 <meta name="twitter:description" content="${desc}" />
@@ -62,7 +62,7 @@ const faq = [
   ['¿Cuánto cuesta alquilar un contenedor de escombro en Madrid?', 'Depende del tamaño y de la zona. El contenedor de 3 m³ cuesta entre 190 € y 230 € y el de 6 m³ entre 220 € y 260 €, con entrega y recogida incluidas. El precio exacto lo da el radio de tu municipio.'],
   ['¿Cuánto tiempo puedo tener el contenedor?', 'Los contenedores tienen un plazo máximo de 2 semanas.'],
   ['¿Necesito permiso del Ayuntamiento para poner un contenedor?', 'Sí. El contenedor se deja en la vía pública (calzada o acera) para poder retirarlo bien, así que necesitas la licencia de ocupación de vía pública del Ayuntamiento; sin ella te pueden multar.'],
-  ['¿Qué diferencia hay entre un saco y un contenedor?', 'El saco (1 m³, hasta 1.000 kg) es la opción para reformas pequeñas, cabe en espacios reducidos y cuesta 50 € en 13 municipios. El contenedor metálico (3 m³ o 6 m³) es para reformas integrales y derribos grandes y se contrata por zona en toda la Comunidad de Madrid.'],
+  ['¿Qué diferencia hay entre un saco y un contenedor?', 'El saco (1 m³, hasta 1.000 kg) es la opción para reformas pequeñas, cabe en espacios reducidos y cuesta 55 € en 13 municipios. El contenedor metálico (3 m³ o 6 m³) es para reformas integrales y derribos grandes y se contrata por zona en toda la Comunidad de Madrid.'],
   ['¿Cómo se paga?', 'El pago es online con tarjeta a través de Stripe. Para empresas facturamos con IVA y CIF; indícanoslo al hacer la reserva.'],
 ];
 
@@ -168,7 +168,7 @@ const pilar = `${head({ title: pilarTitle, desc: pilarDesc, path: '/contenedores
       <div class="vs__price">desde 220<i>€</i></div>
     </div>
   </div>
-  <p>¿Obra pequeña? Un <a href="/#productos">saco de escombro</a> de 1 m³ cuesta 50 € y cabe en espacios reducidos.</p>
+  <p>¿Obra pequeña? Un <a href="/#productos">saco de escombro</a> de 1 m³ cuesta 55 € y cabe en espacios reducidos.</p>
 
   <h2>Municipios por zona</h2>
   <p>Estos son los municipios de cada radio. Los que tienen enlace cuentan además con servicio de saco de escombro.</p>

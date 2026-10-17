@@ -16,7 +16,7 @@ const ALLOWED_ORIGINS = new Set(
 const MAX_QTY = 20;
 
 const PRICES = {
-  saco:  { unit: 5000, shipping: 500, freeFrom: 3 },
+  saco:  { unit: 5500 },
   cont3: { r1: 19000, r2: 21000, r3: 23000 },
   cont6: { r1: 22000, r2: 24000, r3: 26000 },
 };
@@ -159,12 +159,6 @@ exports.handler = async (event) => {
       },
       quantity: qty,
     });
-    if (qty < PRICES.saco.freeFrom) {
-      lineItems.push({
-        price_data: { currency: 'eur', product_data: { name: 'Gastos de envío' }, unit_amount: PRICES.saco.shipping },
-        quantity: 1,
-      });
-    }
   } else {
     lineItems.push({
       price_data: {

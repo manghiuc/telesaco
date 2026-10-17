@@ -93,7 +93,7 @@ ${C.top()}
         <span class="calc__step">€</span>
         <p class="calc__title">Precio único en ${place}</p>
       </header>
-      <div class="pcard__price">50<i>€</i></div>
+      <div class="pcard__price">55<i>€</i></div>
       <p class="pcard__note">${note}</p>
       <ul class="pcard__list">
 ${feats.map((f) => `        <li>${C.CHECK}${f}</li>`).join('\n')}
@@ -118,7 +118,7 @@ ${feats.map((f) => `        <li>${C.CHECK}${f}</li>`).join('\n')}
 <section class="stats" aria-label="Datos del servicio">
   <div class="stat"><strong><span data-count="12000">0</span>+</strong><span>sacos entregados</span></div>
   <div class="stat"><strong><span data-count="24">0</span> h</strong><span>plazo de entrega</span></div>
-  <div class="stat"><strong><span data-count="50">0</span><i>€</i></strong><span>precio único</span></div>
+  <div class="stat"><strong><span data-count="55">0</span><i>€</i></strong><span>precio único</span></div>
   ${statPop}
 </section>
 
