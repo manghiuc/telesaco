@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 
 const files = [
-  'aviso-legal.html', 'condiciones-servicio.html', 'condiciones.html', 'index.html',
+  'aviso-legal.html', 'condiciones.html', 'index.html',
   'politica-privacidad.html', 'success.html',
   'saco-escombro-alcorcon.html', 'saco-escombro-arganda-del-rey.html', 'saco-escombro-coslada.html',
   'saco-escombro-fuenlabrada.html', 'saco-escombro-getafe.html', 'saco-escombro-leganes.html',

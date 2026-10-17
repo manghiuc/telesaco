@@ -16,10 +16,20 @@
   /* ===== Mobile menu ===== */
   const burger = $('#burger');
   const mob    = $('#mobMenu');
-  burger?.addEventListener('click', () => {
-    const open = burger.classList.toggle('is-open');
+  const setMenu = (open) => {
+    burger?.classList.toggle('is-open', open);
+    burger?.setAttribute('aria-expanded', String(open));
+    burger?.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
     mob?.classList.toggle('is-open', open);
     document.body.style.overflow = open ? 'hidden' : '';
+  };
+  burger?.addEventListener('click', () => setMenu(!mob?.classList.contains('is-open')));
+  matchMedia('(min-width: 1101px)').addEventListener?.('change', (e) => { if (e.matches) setMenu(false); });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key !== 'Escape' || !mob?.classList.contains('is-open')) return;
+    setMenu(false);
+    burger?.focus();
   });
 
   /* ===== Smooth scroll ===== */
@@ -30,19 +40,20 @@
       const t = document.querySelector(id);
       if (!t) return;
       e.preventDefault();
-      const y = t.getBoundingClientRect().top + window.scrollY - 70;
-      window.scrollTo({ top: y, behavior: 'smooth' });
-      mob?.classList.remove('is-open');
-      burger?.classList.remove('is-open');
-      document.body.style.overflow = '';
+      const tb  = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--tb')) || 0;
+      const off = tb + (document.querySelector('.hd')?.offsetHeight || 70) + 10;
+      const y = t.getBoundingClientRect().top + window.scrollY - off;
+      const calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      window.scrollTo({ top: y, behavior: calm ? 'auto' : 'smooth' });
+      setMenu(false);
     });
   });
 
   /* ===== Calculator ===== */
   const PRICES = {
     saco:  { unit: 50, shipping: 5, freeFrom: 3 },
-    cont3: { r1: 185, r2: 205, r3: 225 },
-    cont6: { r1: 215, r2: 235, r3: 255 }
+    cont3: { r1: 190, r2: 210, r3: 230 },
+    cont6: { r1: 220, r2: 240, r3: 260 }
   };
 
   let prod  = 'saco';
@@ -58,6 +69,9 @@
   const zoneField = $('#zoneField');
   const sacoNote  = $('#sacoNote');
   const shipNote  = $('#shippingNote');
+
+  if (zoneSel?.selectedOptions[0]) radio = zoneSel.selectedOptions[0].parentElement?.dataset.radio || 'r1';
+  if (qtyIn) qtyIn.value = String(qty);
 
   function switchProduct(p) {
     prod = p;
@@ -98,6 +112,7 @@
       }
     }
     animateTotal(total);
+    window.fxBump?.(totalEl?.closest('.calc__total'));
   }
 
   segBtns.forEach(b => {
@@ -110,7 +125,7 @@
   });
 
   zoneSel?.addEventListener('change', () => {
-    radio = zoneSel.value || 'r1';
+    radio = zoneSel.selectedOptions[0]?.parentElement?.dataset.radio || 'r1';
     update();
   });
 
@@ -124,6 +139,9 @@
     });
   });
 
+  // Aviso inline (fx.js define window.fxToast; si no carga, cae a alert)
+  const toast = (msg) => (window.fxToast ? window.fxToast(msg) : alert(msg));
+
   // ── Stripe Checkout (dynamic, via Netlify Function) ──────────────────────
   orderBtn?.addEventListener('click', async (e) => {
     e.preventDefault();
@@ -134,33 +152,75 @@
     const phone     = phoneEl?.value.trim()   || '';
     const address   = addressEl?.value.trim() || '';
 
+    const phoneOk = /^\+?[\d\s().-]{9,20}$/.test(phone) && phone.replace(/\D/g, '').length >= 9;
+    const checks  = [name.length >= 2, phoneOk, address.length >= 5];
     [nameEl, phoneEl, addressEl].forEach((el, i) => {
-      const val = [name, phone, address][i];
       if (!el) return;
-      el.classList.toggle('is-invalid', !val);
+      el.classList.remove('is-invalid');
+      if (!checks[i]) {
+        void el.offsetWidth; // reinicia la animación de sacudida
+        el.classList.add('is-invalid');
+      }
     });
-    if (!name || !phone || !address) return;
+    if (!checks.every(Boolean)) {
+      const first = [nameEl, phoneEl, addressEl].find((el, i) => !checks[i]);
+      first?.focus({ preventScroll: false });
+      toast(!phoneOk && phone
+        ? 'Revisa el teléfono: solo números, mínimo 9 dígitos.'
+        : 'Rellena tu nombre, teléfono y dirección (calle y número) para continuar.');
+      return;
+    }
+
+    const termsEl = document.getElementById('acceptTerms');
+    if (termsEl && !termsEl.checked) {
+      const box = document.getElementById('termsBox');
+      box?.classList.remove('is-invalid'); void box?.offsetWidth; box?.classList.add('is-invalid');
+      termsEl.focus();
+      toast('Para continuar, acepta las condiciones del servicio.');
+      return;
+    }
 
     orderBtn.disabled = true;
-    orderBtn.textContent = 'Redirigiendo al pago…';
+    orderBtn.classList.add('is-loading');
+    orderBtn.querySelector('span').textContent = 'Redirigiendo al pago…';
 
+    let res = null, data = null;
     try {
-      const res  = await fetch('/.netlify/functions/create-checkout', {
+      res = await fetch('/.netlify/functions/create-checkout', {
         method:  'POST',
         headers: { 'Content-Type': 'application/json' },
-        body:    JSON.stringify({ product: prod, zone: radio, quantity: qty, name, phone, address }),
+        body:    JSON.stringify({ terms: !!termsEl?.checked, website: document.getElementById('hpWebsite')?.value || '', product: prod, municipio: prod === 'saco' ? '' : (zoneSel?.value || ''), quantity: qty, name, phone, address }),
       });
-      const data = await res.json();
-      if (data.url) {
-        window.location.href = data.url;
-      } else {
-        throw new Error(data.error || 'Error desconocido');
-      }
-    } catch (err) {
-      alert('No se pudo conectar con el sistema de pago.\nLl\u00e1manos al 677 882 716 para hacer tu pedido.');
-      orderBtn.disabled = false;
-      orderBtn.textContent = 'Continuar al pago \u2192';
+      data = await res.json().catch(() => null);
+    } catch (err) { /* sin conexión */ }
+
+    if (data && data.url) {
+      window.location.href = data.url;
+      return;
     }
+    toast(!res
+      ? 'No se pudo conectar. Revisa tu conexión o llámanos al 677 882 716 para hacer tu pedido.'
+      : (data && data.error) || 'El pago no está disponible ahora mismo. Llámanos al 677 882 716 para hacer tu pedido.');
+    orderBtn.disabled = false;
+    orderBtn.classList.remove('is-loading');
+    orderBtn.querySelector('span').textContent = 'Continuar al pago';
+  });
+
+  // Al volver atrás desde Stripe el navegador restaura la página: se rehabilita el botón
+  window.addEventListener('pageshow', (e) => {
+    if (!e.persisted || !orderBtn) return;
+    orderBtn.disabled = false;
+    orderBtn.classList.remove('is-loading');
+    const label = orderBtn.querySelector('span');
+    if (label) label.textContent = 'Continuar al pago';
+  });
+
+  // Limpia el error de un campo en cuanto el usuario vuelve a escribir
+  ['custName', 'custPhone', 'custAddress'].forEach(id => {
+    document.getElementById(id)?.addEventListener('input', e => e.target.classList.remove('is-invalid'));
+  });
+  document.getElementById('acceptTerms')?.addEventListener('change', () => {
+    document.getElementById('termsBox')?.classList.remove('is-invalid');
   });
 
   /* init */
@@ -187,18 +247,14 @@
   }, { threshold: 0.5 });
   $$('[data-count]').forEach(el => cIO.observe(el));
 
-  /* ===== Reveal on scroll ===== */
-  const targets = $$('.prod, .step, .rev, .radio-card, .saco-flat, .allowed__col, .compare__table, .calc, .hero__copy');
-  targets.forEach(el => el.classList.add('reveal'));
-  const rIO = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('is-in');
-        rIO.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.12 });
-  $$('.reveal').forEach(el => rIO.observe(el));
+  /* (los reveals por scroll viven ahora en fx.js) */
+
+  /* ===== Copiar enlace (botón de compartir) ===== */
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('[data-copy]');
+    if (!btn) return;
+    navigator.clipboard?.writeText(btn.dataset.copy).then(() => { btn.textContent = '¡Copiado!'; });
+  });
 
   /* ===== FAQ (close others) ===== */
   $$('.faq details').forEach(d => {

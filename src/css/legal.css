@@ -1,0 +1,64 @@
+/* ============================================================
+   PÁGINAS LEGALES — misma identidad que la home, pensadas para leer
+   ============================================================ */
+.legal{
+  max-width: 820px; margin: 0 auto;
+  padding: clamp(48px, 7vw, 92px) var(--grid) clamp(64px, 8vw, 112px);
+}
+.legal .badge{
+  display: inline-block; margin-bottom: 22px; padding: 7px 14px; border-radius: 6px;
+  background: var(--ink); color: var(--y);
+  font-family: var(--f-display); font-size: 12px; letter-spacing: .14em; text-transform: uppercase;
+  rotate: -1.5deg;
+}
+.legal h1{
+  font-family: var(--f-display); text-transform: uppercase; text-wrap: balance;
+  font-size: clamp(2.2rem, 5.6vw, 3.9rem); line-height: 1; letter-spacing: -.03em;
+  margin: 0 0 20px;
+}
+.legal .meta{
+  margin: 0 0 46px; padding-bottom: 28px;
+  font-size: 14px; color: var(--gray); border-bottom: 2px solid var(--ink);
+}
+.legal h2{
+  position: relative; margin: 56px 0 14px; padding-top: 22px;
+  font-family: var(--f-display); text-transform: uppercase; text-wrap: balance;
+  font-size: clamp(1.15rem, 2.2vw, 1.5rem); line-height: 1.15; letter-spacing: -.01em; color: var(--ink);
+}
+.legal h2::before{
+  content: ""; position: absolute; top: 0; left: 0; width: 56px; height: 6px; border-radius: 3px; background: var(--y);
+}
+.legal p{ margin: 0 0 15px; color: var(--ink-3); font-size: 1.02rem; line-height: 1.72; }
+.legal strong{ color: var(--ink); }
+.legal ul, .legal ol{ margin: 0 0 18px; padding-left: 22px; color: var(--ink-3); line-height: 1.7; }
+.legal ul{ list-style: square; }
+.legal li{ margin-bottom: 8px; padding-left: 4px; }
+.legal li::marker{ color: var(--y-deep); }
+.legal a{
+  font-weight: 700; color: var(--ink);
+  background: linear-gradient(var(--y), var(--y)) 0 100% / 100% 3px no-repeat;
+  transition: background-size .3s var(--ease-out);
+}
+.legal a:hover{ background-size: 100% 100%; }
+.legal .info-box{
+  position: relative; isolation: isolate; margin: 26px 0 8px; padding: 22px 26px;
+  background: var(--y); border: 2px solid var(--ink); border-radius: var(--r-lg);
+  box-shadow: 7px 7px 0 var(--ink); color: var(--ink); line-height: 1.6;
+}
+.legal .info-box strong{ display: block; margin-bottom: 6px; font-family: var(--f-display); text-transform: uppercase; letter-spacing: .02em; }
+.legal .info-box p{ color: var(--ink); margin-bottom: 8px; }
+.legal .price-table{ margin: 20px 0 24px; }
+@media (max-width: 640px){
+  .legal .info-box{ box-shadow: 4px 4px 0 var(--ink); }
+}
+
+/* ---------- Tema oscuro ---------- */
+.sub .legal h1, .sub .legal h2{ color: #fff; }
+.sub .legal .badge{ background: var(--y); color: var(--ink); }
+.sub .legal .meta{ color: var(--d-mute); border-bottom-color: var(--y); }
+.sub .legal p, .sub .legal ul, .sub .legal ol{ color: var(--d-text); }
+.sub .legal strong{ color: #fff; }
+.sub .legal a{ color: #fff; }
+.sub .legal a:hover{ color: var(--ink); }
+.sub .legal .info-box{ box-shadow: 7px 7px 0 var(--sh); }
+.sub .legal .info-box, .sub .legal .info-box p, .sub .legal .info-box strong, .sub .legal .info-box a{ color: var(--ink); }

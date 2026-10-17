@@ -2,12 +2,14 @@
 // Uso: node scripts/generate-landings.js
 
 const fs = require('fs');
+const { transformLanding } = require('./build-subpages');
 const path = require('path');
+const { LOCAL } = require('./local-data');
 
 const municipios = [
   { slug: 'alcorcon', nombre: 'Alcorcón', nombreLargo: 'Alcorcón',
     barrios: ['Centro', 'San José de Valderas', 'Parque de Lisboa', 'Las Retamas', 'Las Bayonas', 'Parque Oeste', 'Parque Ondarreta'],
-    contexto: 'Alcorcón es uno de los municipios con más actividad de reformas del sur de Madrid. Sus comunidades de vecinos suelen tener patios y plazas interiores que facilitan dejar el saco en propiedad privada sin necesidad de permiso municipal.',
+    contexto: 'Alcorcón es uno de los municipios con más actividad de reformas del sur de Madrid. Con tantas comunidades de vecinos en obra, el saco es la forma más cómoda de retirar el escombro sin viajes al punto limpio: lo dejamos en la calle junto a tu portal y lo recogemos cuando avises.',
     poblacion: '169.000', distancia: 'a 13 km del centro de Madrid',
     metaTitle: 'Saco de escombro Alcorcón 50€ · Entrega 24h a domicilio',
     metaDesc: 'Alquiler de saco de escombro en Alcorcón desde 50€ con entrega en 24 h. Recogida incluida en Centro, San José de Valderas, Parque de Lisboa y toda la ciudad.',
@@ -15,7 +17,7 @@ const municipios = [
   },
   { slug: 'mostoles', nombre: 'Móstoles', nombreLargo: 'Móstoles',
     barrios: ['Centro', 'Parque Coimbra', 'Estoril II', 'El Soto', 'Pinares Llanos', 'Norte-Universidad', 'Hospital', 'Iviasa'],
-    contexto: 'Móstoles es la tercera ciudad de la Comunidad de Madrid. Con muchas urbanizaciones tipo chalet en barrios como Parque Coimbra o El Soto, es ideal para dejar el telesaco en propiedad privada sin trámites.',
+    contexto: 'Móstoles es la tercera ciudad de la Comunidad de Madrid. Con mucha actividad de reformas en bloques y en urbanizaciones tipo chalet de barrios como Parque Coimbra o El Soto, dejamos el telesaco en la calle junto a tu obra y lo recogemos cuando avises.',
     poblacion: '209.000', distancia: 'a 18 km del centro de Madrid',
     metaTitle: 'Saco escombro Móstoles 50€ · Reparto 24h en toda la ciudad',
     metaDesc: 'Saco de escombro a domicilio en Móstoles por 50€. Cubrimos Parque Coimbra, El Soto, Estoril, Centro y todas las urbanizaciones. Entrega en 24 h.',
@@ -47,15 +49,15 @@ const municipios = [
   },
   { slug: 'pozuelo-de-alarcon', nombre: 'Pozuelo de Alarcón', nombreLargo: 'Pozuelo de Alarcón',
     barrios: ['Estación', 'La Cabaña', 'Húmera', 'Somosaguas', 'Monteclaro', 'Los Mochuelos', 'Prado de Somosaguas'],
-    contexto: 'Pozuelo de Alarcón es un municipio de chalets y urbanizaciones con mucha actividad de reformas premium. La mayoría de viviendas permiten dejar el saco en parcela privada sin trámites.',
+    contexto: 'Pozuelo de Alarcón es un municipio de chalets y urbanizaciones con mucha actividad de reformas premium. Dejamos el saco en la calle junto a tu vivienda y lo recogemos cuando avises, con la comunicación previa al Ayuntamiento.',
     poblacion: '87.000', distancia: 'a 14 km del centro de Madrid',
     metaTitle: 'Saco escombro Pozuelo de Alarcón 50€ · Entrega 24h',
-    metaDesc: 'Saco de escombro en Pozuelo de Alarcón por 50€. Servicio en Somosaguas, Monteclaro, Húmera, Estación. Ideal para chalets con parcela privada.',
-    ogTitle: 'Telesaco Pozuelo · Reformas en tu chalet', h1: 'Reformas en Pozuelo: tu telesaco sin trámites',
+    metaDesc: 'Saco de escombro en Pozuelo de Alarcón por 50€. Servicio en Somosaguas, Monteclaro, Húmera, Estación. Entrega en 24 h y recogida incluida.',
+    ogTitle: 'Telesaco Pozuelo · Reformas en tu chalet', h1: 'Reformas en Pozuelo: tu telesaco en 24 h',
   },
   { slug: 'rivas-vaciamadrid', nombre: 'Rivas-Vaciamadrid', nombreLargo: 'Rivas-Vaciamadrid',
     barrios: ['Rivas Centro', 'Covibar', 'Pablo Iglesias', 'La Luna', 'Ciudadela', 'La Esperanza', 'El Cristo'],
-    contexto: 'Rivas-Vaciamadrid es el municipio joven por excelencia del sureste de Madrid. Mayoría de bloques modernos y dúplex con espacio en garaje o trastero para el telesaco, simplificando la logística.',
+    contexto: 'Rivas-Vaciamadrid es el municipio joven por excelencia del sureste de Madrid. Mayoría de bloques modernos y dúplex en reforma: dejamos el telesaco en la calle junto a tu portal y lo recogemos cuando avises.',
     poblacion: '100.000', distancia: 'a 17 km del centro de Madrid',
     metaTitle: 'Saco de escombro Rivas-Vaciamadrid 50€ · Entrega 24h',
     metaDesc: 'Telesaco a domicilio en Rivas-Vaciamadrid por 50€. Cubrimos Covibar, Pablo Iglesias, La Luna, Rivas Centro. Recogida incluida.',
@@ -103,6 +105,111 @@ const municipios = [
   },
 ];
 
+// ---- SEO: títulos, descripciones, H1, vecinos y marcado coherentes con el texto visible ----
+const B = 'https://telesacoenmadrid.es';
+const SEO_BARRIOS = {
+  alcorcon: ['San José de Valderas', 'Parque Oeste'], mostoles: ['Parque Coimbra', 'El Soto'],
+  getafe: ['Perales del Río', 'El Bercial'], leganes: ['Zarzaquemada', 'San Nicasio'],
+  fuenlabrada: ['Loranca', 'Cerro Palomera'], 'pozuelo-de-alarcon': ['Somosaguas', 'Húmera'],
+  'rivas-vaciamadrid': ['Covibar', 'La Luna'], coslada: ['Ciudad 70', 'San Pablo'],
+  'arganda-del-rey': ['La Poveda'], parla: [],
+  'san-sebastian-de-los-reyes': ['Los Arroyos'], 'san-fernando-de-henares': ['Ciudad Parque Henares'],
+};
+const SEO_H1 = {
+  'pozuelo-de-alarcon': 'Saco de escombro en Pozuelo de Alarcón, entrega en 24 h',
+  'rivas-vaciamadrid': 'Saco de escombro en Rivas-Vaciamadrid, sin salir de casa',
+  'san-sebastian-de-los-reyes': 'Saco de escombro en San Sebastián de los Reyes, para mañana',
+  fuenlabrada: 'Saco de escombro en Fuenlabrada, entrega en 24 h',
+};
+const VECINOS = {
+  alcorcon: ['leganes', 'mostoles', 'pozuelo-de-alarcon', 'madrid-capital'],
+  mostoles: ['alcorcon', 'fuenlabrada', 'leganes'],
+  getafe: ['leganes', 'parla', 'fuenlabrada', 'madrid-capital'],
+  leganes: ['alcorcon', 'getafe', 'fuenlabrada', 'madrid-capital'],
+  fuenlabrada: ['leganes', 'getafe', 'parla', 'mostoles'],
+  'pozuelo-de-alarcon': ['alcorcon', 'madrid-capital'],
+  'rivas-vaciamadrid': ['coslada', 'arganda-del-rey', 'san-fernando-de-henares', 'madrid-capital'],
+  coslada: ['san-fernando-de-henares', 'rivas-vaciamadrid', 'madrid-capital'],
+  'arganda-del-rey': ['rivas-vaciamadrid', 'coslada', 'san-fernando-de-henares'],
+  parla: ['getafe', 'fuenlabrada', 'leganes'],
+  'san-sebastian-de-los-reyes': ['madrid-capital', 'coslada'],
+  'san-fernando-de-henares': ['coslada', 'rivas-vaciamadrid', 'san-sebastian-de-los-reyes'],
+};
+const NOMBRES = { 'madrid-capital': 'Madrid Capital' };
+municipios.forEach((m) => { NOMBRES[m.slug] = m.nombreLargo; });
+municipios.forEach((m) => {
+  const b = (LOCAL[m.slug] && LOCAL[m.slug].barrios ? LOCAL[m.slug].barrios.slice(0, 2) : SEO_BARRIOS[m.slug]) || [];
+  const lista = b.length > 1 ? `${b[0]}, ${b[1]}` : (b[0] || '');
+  m.metaTitle = `Saco de escombro en ${m.nombreLargo} · 50 € · 24 h`;
+  m.ogTitle = m.metaTitle;
+  m.metaDesc = `Saco de escombro en ${m.nombreLargo} por 50 € (1 m³ · 1.000 kg). Entrega en 24 h y recogida incluida ${lista ? 'en ' + lista + ' y ' : 'en '}todo el municipio.`;
+  if (SEO_H1[m.slug]) m.h1 = SEO_H1[m.slug];
+  m.vecinos = VECINOS[m.slug] || [];
+  m.local = LOCAL[m.slug] || null;
+  if (m.local && m.local.barrios) m.barrios = m.local.barrios;
+});
+
+const faqOf = (m) => [
+  [`¿Cuánto cuesta un saco de escombro en ${m.nombreLargo}?`, 'Cuesta 50 € con IVA incluido. Si pides menos de 3 sacos se añaden 5 € de envío; desde 3 unidades el envío es gratis.'],
+  [`¿En qué franja horaria llega el saco a ${m.nombreLargo}?`, 'Entre las 8:00 y las 18:00 del día siguiente al pedido, si pides antes de las 16:00. Si necesitas una franja concreta, dínoslo al confirmar por WhatsApp.'],
+  ['¿Cuánto tiempo puedo tener el saco?', 'No cobramos por días. Lo tienes lo que necesites y nos avisas cuando esté lleno: lo recogemos en menos de 48 h desde tu aviso.'],
+  [`¿Necesito permiso del Ayuntamiento de ${m.nombreLargo}?`, m.local ? m.local.faq : 'Sí, porque el saco se deja en la vía pública para poder recogerlo. Hace falta la licencia de ocupación de vía pública del Ayuntamiento; si prefieres no encargarte del trámite, contrata un contenedor metálico con gestión administrativa.'],
+  ['¿Hacéis factura para empresa o autónomo?', 'Sí. Facturamos con IVA y CIF desde el primer servicio; indícanos los datos fiscales al hacer la reserva.'],
+];
+const faqHTML = (m) => faqOf(m).map(([q, a]) => `    <details class="faq-item">
+      <summary>${q}</summary>
+      <div class="faq-item__body">${a}</div>
+    </details>`).join('\n');
+const vecinosHTML = (m) => m.vecinos.map((s) => `    <a href="/saco-escombro-${s}">${NOMBRES[s]}</a>`).join('\n');
+
+const ldGraph = (m, url) => ({
+  '@context': 'https://schema.org',
+  '@graph': [
+    { '@type': 'WebPage', '@id': `${url}#webpage`, url, name: m.metaTitle, inLanguage: 'es-ES',
+      isPartOf: { '@id': `${B}/#website` }, about: { '@id': `${url}#service` }, breadcrumb: { '@id': `${url}#breadcrumb` } },
+    { '@type': 'BreadcrumbList', '@id': `${url}#breadcrumb`, itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Inicio', item: `${B}/` },
+      { '@type': 'ListItem', position: 2, name: `Saco de escombro en ${m.nombreLargo}`, item: url } ] },
+    { '@type': 'Service', '@id': `${url}#service`, name: `Alquiler de saco de escombro en ${m.nombreLargo}`,
+      serviceType: 'Alquiler de saco de escombro a domicilio',
+      description: `Saco de escombro de 1 m³ y hasta 1.000 kg con entrega en 24 h y recogida incluida en ${m.nombreLargo}.`,
+      provider: { '@id': `${B}/#business` },
+      areaServed: { '@type': 'City', name: m.nombreLargo, containedInPlace: { '@type': 'AdministrativeArea', name: 'Comunidad de Madrid' } },
+      offers: { '@type': 'Offer', price: '50.00', priceCurrency: 'EUR', availability: 'https://schema.org/InStock', url } },
+    { '@type': 'FAQPage', mainEntity: faqOf(m).map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) },
+  ],
+});
+
+const esc = (t) => t.replace(/&/g, '&amp;');
+const permisoHTML = (m) => {
+  const L = m.local;
+  if (!L) return `  <h3>¿Necesito permiso del Ayuntamiento de ${m.nombreLargo}?</h3>
+  <p>Sí. El saco se deja siempre en la vía pública (calzada o acera) para poder recogerlo bien, así que hay que tramitar la ocupación con el Ayuntamiento.</p>
+  <ul>
+    <li><strong>En vía pública</strong> (acera, calzada): necesitas la <strong>licencia de ocupación de vía pública</strong> del Ayuntamiento de ${m.nombreLargo}.</li>
+  </ul>
+  <p>Si prefieres no encargarte del trámite, lo más práctico es contratar un <a href="/contenedores-escombro-madrid">contenedor metálico</a> con gestión administrativa incluida.</p>`;
+  const acceso = (L.acceso || []).map((a) => `    <li>${a}</li>`).join('\n');
+  const poligonos = (L.poligonos || []).length
+    ? `\n  <p><strong>Polígonos y áreas industriales:</strong> ${L.poligonos.join(', ')}. Atendemos también a empresas, con factura.</p>` : '';
+  const fuentes = L.fuentes.map(([t, u]) => `<a href="${esc(u)}" target="_blank" rel="noopener">${t}</a>`).join(' · ');
+  return `  <h3>¿Necesito permiso del Ayuntamiento de ${m.nombreLargo}?</h3>
+  <p>Sí. El saco se deja siempre en la vía pública (calzada o acera) para poder recogerlo bien, así que hay que tramitar la ocupación con el Ayuntamiento.</p>
+  <ul>
+    <li><strong>En vía pública</strong> (acera, calzada): ${L.via}</li>
+  </ul>
+  <p>Si prefieres no encargarte del trámite, lo más práctico es contratar un <a href="/contenedores-escombro-madrid">contenedor metálico</a> con gestión administrativa incluida.</p>
+${L.punto ? `
+  <h3>Punto limpio en ${m.nombreLargo}: qué admite y con qué límites</h3>
+  <p>${L.punto}</p>` : ''}
+${acceso ? `
+  <h3>Obras y accesos en ${m.nombreLargo}</h3>
+  <ul>
+${acceso}
+  </ul>` : ''}${poligonos}
+  <p class="local-src"><small>Información revisada en octubre de 2026 en fuentes oficiales: ${fuentes}. Las normas municipales cambian: confirma el trámite con el Ayuntamiento antes de presentarlo.</small></p>`;
+};
+
 const renderHTML = (m) => {
   const barriosHTML = m.barrios.map(b => `    <div class="barrio">${b}</div>`).join('\n');
   const shareURL = `https://telesacoenmadrid.es/saco-escombro-${m.slug}`;
@@ -126,7 +233,11 @@ const renderHTML = (m) => {
 <meta property="og:type" content="website" />
 <meta property="og:locale" content="es_ES" />
 <meta property="og:image" content="https://telesacoenmadrid.es/assets/img/og-cover.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Telesaco a domicilio en Madrid: saco de escombro desde 50 €" />
 <meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://telesacoenmadrid.es/assets/img/og-cover.jpg" />
 <meta name="twitter:title" content="${m.ogTitle}" />
 <meta name="twitter:description" content="${m.metaDesc}" />
 
@@ -139,60 +250,7 @@ const renderHTML = (m) => {
 <link rel="stylesheet" href="/src/css/landing.css" />
 
 <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {"@type":"ListItem","position":1,"name":"Inicio","item":"https://telesacoenmadrid.es/"},
-    {"@type":"ListItem","position":2,"name":"Sacos de escombro Madrid","item":"https://telesacoenmadrid.es/sacos-escombro-madrid"},
-    {"@type":"ListItem","position":3,"name":"Saco escombro ${m.nombreLargo}","item":"${shareURL}"}
-  ]
-}
-</script>
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  "@id": "${shareURL}#business",
-  "name": "Telesaco en Madrid — ${m.nombreLargo}",
-  "url": "${shareURL}",
-  "telephone": "+34677882716",
-  "priceRange": "€€",
-  "currenciesAccepted": "EUR",
-  "paymentAccepted": "Credit Card, Bizum, Google Pay, Apple Pay",
-  "areaServed": {"@type":"City","name":"${m.nombreLargo}","containedInPlace":{"@type":"AdministrativeArea","name":"Comunidad de Madrid"}},
-  "address": {"@type":"PostalAddress","addressLocality":"${m.nombreLargo}","addressRegion":"Comunidad de Madrid","addressCountry":"ES"},
-  "openingHoursSpecification": [
-    {"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"08:00","closes":"19:00"},
-    {"@type":"OpeningHoursSpecification","dayOfWeek":"Saturday","opens":"09:00","closes":"13:00"}
-  ]
-}
-</script>
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Service",
-  "name": "Alquiler de saco de escombro en ${m.nombreLargo}",
-  "description": "Saco de escombro de 1 m³ y hasta 1.000 kg con entrega 24h y recogida incluida en ${m.nombreLargo}, Comunidad de Madrid.",
-  "provider": {"@type":"LocalBusiness","name":"Telesaco en Madrid","telephone":"+34677882716","url":"https://telesacoenmadrid.es"},
-  "areaServed": {"@type":"City","name":"${m.nombreLargo}","containedInPlace":{"@type":"AdministrativeArea","name":"Comunidad de Madrid"}},
-  "offers": {"@type":"Offer","price":"50.00","priceCurrency":"EUR","availability":"https://schema.org/InStock","url":"${shareURL}"}
-}
-</script>
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {"@type":"Question","name":"¿Cuánto cuesta un saco de escombro en ${m.nombreLargo}?","acceptedAnswer":{"@type":"Answer","text":"El saco de escombro en ${m.nombreLargo} cuesta 50€ con IVA incluido. Si pides menos de 3 sacos se añaden 5€ de envío; desde 3 unidades el envío es gratis."}},
-    {"@type":"Question","name":"¿Cuánto tarda en llegar el saco a ${m.nombreLargo}?","acceptedAnswer":{"@type":"Answer","text":"Si pides antes de las 16:00, el saco llega al día siguiente en ${m.nombreLargo} entre las 8:00 y las 18:00. Para urgencias llámanos al 677 882 716."}},
-    {"@type":"Question","name":"¿Necesito permiso del Ayuntamiento de ${m.nombreLargo}?","acceptedAnswer":{"@type":"Answer","text":"Si colocas el saco en propiedad privada (portal, garaje, jardín) NO necesitas permiso. Si lo pones en la calle o acera, sí necesitas una licencia de ocupación de vía pública del Ayuntamiento de ${m.nombreLargo}."}},
-    {"@type":"Question","name":"¿Hacéis factura para empresas en ${m.nombreLargo}?","acceptedAnswer":{"@type":"Answer","text":"Sí. Facturamos con IVA y CIF a particulares, autónomos y empresas de ${m.nombreLargo} desde el primer servicio."}}
-  ]
-}
+${JSON.stringify(ldGraph(m, shareURL), null, 2)}
 </script>
 </head>
 <body>
@@ -224,7 +282,7 @@ const renderHTML = (m) => {
     <span class="muni-hero__badge">📍 ${m.nombreLargo} · ${m.distancia}</span>
     <h1>${m.h1}</h1>
     <p class="muni-hero__sub">
-      Te llevamos un saco de escombro de <strong>1 m³ y hasta 1.000 kg</strong> a tu portal en ${m.nombreLargo}.
+      Te llevamos un saco de escombro de <strong>1 m³ y hasta 1.000 kg</strong> a pie de tu obra en ${m.nombreLargo}.
       Precio único de 50 €, entrega en 24 h y recogida incluida cuando avises.
     </p>
     <div>
@@ -320,13 +378,13 @@ const renderHTML = (m) => {
       <tr>
         <td>Contenedor metálico 3 m³</td>
         <td>3 m³ · 3.000 kg</td>
-        <td class="price-cell">desde 185 €</td>
+        <td class="price-cell">desde 190 €</td>
         <td>Incluido</td>
       </tr>
       <tr>
         <td>Contenedor metálico 6 m³</td>
         <td>6 m³ · 6.000 kg</td>
-        <td class="price-cell">desde 215 €</td>
+        <td class="price-cell">desde 220 €</td>
         <td>Incluido</td>
       </tr>
     </tbody>
@@ -350,12 +408,7 @@ const renderHTML = (m) => {
 ${barriosHTML}
   </div>
 
-  <h3>¿Necesito permiso del Ayuntamiento de ${m.nombreLargo}?</h3>
-  <ul>
-    <li><strong>En propiedad privada</strong> (portal, garaje, jardín, parcela): <strong>no necesitas ningún permiso</strong>.</li>
-    <li><strong>En vía pública</strong> (acera, calzada): necesitas <strong>licencia de ocupación de vía pública</strong> del Ayuntamiento de ${m.nombreLargo}.</li>
-  </ul>
-  <p>Si no puedes dejarlo en privado, lo más práctico es contratar un <a href="/contenedores-escombro-madrid">contenedor metálico</a> con gestión administrativa incluida.</p>
+${permisoHTML(m)}
 
   <h3>Saco o contenedor: qué te conviene</h3>
   <div class="compare">
@@ -364,7 +417,7 @@ ${barriosHTML}
       <p class="cap">1 m³ · 1.000 kg</p>
       <ul>
         <li>Ideal para baños, cocinas, picado paredes</li>
-        <li>Cabe en aceras anchas y propiedad privada</li>
+        <li>Cabe en aceras anchas y en una plaza de aparcamiento</li>
         <li>Sin coste por días de uso</li>
       </ul>
       <div class="compare__price">50<i>€</i></div>
@@ -374,11 +427,11 @@ ${barriosHTML}
       <p class="cap">3 m³ o 6 m³</p>
       <ul>
         <li>Reformas integrales, derribos grandes</li>
-        <li>Necesita licencia municipal en calle</li>
+        <li>Ocupa más espacio en la calle</li>
         <li>Plazo máximo: 2 semanas</li>
         <li>Mayor capacidad por unidad</li>
       </ul>
-      <div class="compare__price">desde 185<i>€</i></div>
+      <div class="compare__price">desde 190<i>€</i></div>
     </div>
   </div>
 
@@ -399,7 +452,7 @@ ${barriosHTML}
       <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073c0 6.019 4.388 11.005 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.078 24 18.092 24 12.073z"/></svg>
       Facebook
     </a>
-    <button type="button" class="share__btn" onclick="navigator.clipboard.writeText('${shareURL}').then(()=>this.textContent='¡Copiado!')" aria-label="Copiar enlace">
+    <button type="button" class="share__btn" data-copy="${shareURL}" aria-label="Copiar enlace">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
       Copiar enlace
     </button>
@@ -407,35 +460,13 @@ ${barriosHTML}
 
   <h2>Preguntas frecuentes sobre el saco de escombro en ${m.nombreLargo}</h2>
   <div class="faq-list">
-    <details class="faq-item">
-      <summary>¿En qué franja horaria llega el saco a ${m.nombreLargo}?</summary>
-      <div class="faq-item__body">Entre las 8:00 y las 18:00 del día siguiente al pedido. Si necesitas franja específica, dínoslo al confirmar por WhatsApp.</div>
-    </details>
-    <details class="faq-item">
-      <summary>¿Cuánto tiempo puedo tener el saco?</summary>
-      <div class="faq-item__body">No cobramos por días. Lo tienes lo que necesites y nos avisas cuando esté lleno. Recogida en menos de 48 h desde tu aviso.</div>
-    </details>
-    <details class="faq-item">
-      <summary>¿Hacéis factura para empresa o autónomo?</summary>
-      <div class="faq-item__body">Sí. Facturamos con IVA y CIF desde el primer servicio. Indícanos los datos fiscales al hacer la reserva.</div>
-    </details>
-    <details class="faq-item">
-      <summary>¿Puedo poner el saco en la calle de ${m.nombreLargo} sin permiso?</summary>
-      <div class="faq-item__body">No legalmente. El Ayuntamiento exige licencia de ocupación de vía pública. Si no puedes ponerlo en privado, contrata un contenedor metálico con gestión administrativa.</div>
-    </details>
+${faqHTML(m)}
   </div>
 
-  <h3>Municipios cercanos a ${m.nombreLargo}</h3>
+  <h2>Municipios cercanos a ${m.nombreLargo}</h2>
   <p>También damos servicio de telesaco en:</p>
   <div class="vecinos">
-    <a href="/saco-escombro-madrid-capital">Madrid Capital</a>
-    <a href="/saco-escombro-alcorcon">Alcorcón</a>
-    <a href="/saco-escombro-mostoles">Móstoles</a>
-    <a href="/saco-escombro-getafe">Getafe</a>
-    <a href="/saco-escombro-leganes">Leganés</a>
-    <a href="/saco-escombro-fuenlabrada">Fuenlabrada</a>
-    <a href="/saco-escombro-pozuelo-de-alarcon">Pozuelo de Alarcón</a>
-    <a href="/saco-escombro-coslada">Coslada</a>
+${vecinosHTML(m)}
   </div>
 
 </article>
@@ -500,8 +531,28 @@ const outDir = path.join(__dirname, '..');
 let count = 0;
 municipios.forEach(m => {
   const file = path.join(outDir, `saco-escombro-${m.slug}.html`);
-  fs.writeFileSync(file, renderHTML(m), 'utf8');
+  fs.writeFileSync(file, transformLanding(renderHTML(m)), 'utf8');
   count++;
   console.log(`✓ ${file}`);
 });
 console.log(`\nGenerated ${count} landing pages.`);
+
+// Madrid capital se mantiene a mano: se sustituye el bloque de permisos y la respuesta de la FAQ (visible y JSON-LD)
+(() => {
+  const file = path.join(outDir, 'saco-escombro-madrid-capital.html');
+  let h = fs.readFileSync(file, 'utf8');
+  const a = h.indexOf('  <h3>¿Necesito permiso del Ayuntamiento de Madrid?</h3>');
+  const b = h.indexOf('  <h3>Saco o contenedor: qué te conviene en Madrid</h3>');
+  if (a < 0 || b < a) throw new Error('Madrid: no encuentro el bloque de permisos');
+  const L = LOCAL['madrid-capital'];
+  h = h.slice(0, a) + permisoHTML({ nombreLargo: 'Madrid', local: L }) + '\n\n' + h.slice(b);
+  const oldFaq = 'No legalmente. El Ayuntamiento de Madrid exige licencia de ocupación de vía pública. Si no puedes ponerlo en privado, lo más sencillo es contratar un contenedor metálico con gestión administrativa incluida.';
+  h = h.split(oldFaq).join(L.faq);
+  const oldFaq2 = 'En propiedad privada no. En la calzada, ocupando una plaza de aparcamiento, basta una comunicación previa con 2 días hábiles de antelación y el pago de la tasa; en la acera, en una reserva de estacionamiento o donde no se puede aparcar hace falta autorización con 10 días hábiles de antelación.';
+  h = h.split(oldFaq2).join(L.faq);
+  h = h.split('<li><strong>Permiso:</strong> no lo necesitas si dejas el saco en propiedad privada (portal, garaje, jardín).</li>').join('<li><strong>Permiso:</strong> el saco se deja en la vía pública, así que hay que tramitar la ocupación con el Ayuntamiento.</li>');
+  h = h.split('<span>SIN PAPELEO</span>').join('<span>RECOGIDA INCLUIDA</span>');
+  h = h.split('<li>Cabe en aceras anchas y propiedad privada</li>').join('<li>Cabe en aceras anchas y en una plaza de aparcamiento</li>');
+  fs.writeFileSync(file, h, 'utf8');
+  console.log('✓ saco-escombro-madrid-capital.html (bloque local)');
+})();

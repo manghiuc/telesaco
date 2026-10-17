@@ -1,11 +1,5 @@
 User-agent: *
 Allow: /
-Disallow: /success
-Disallow: /success.html
-Disallow: /page/
-Disallow: /.netlify/
-Disallow: /netlify/
-Disallow: /scripts/
 
 # Bloqueo bots agresivos
 User-agent: SemrushBot

@@ -2,172 +2,80 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 <meta name="description" content="Política de privacidad de Telesaco a Domicilio Madrid. Tratamiento de datos conforme al RGPD y LOPDGDD." />
 <title>Política de Privacidad · Telesaco Madrid</title>
-<link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="32x32" />
+<link rel="canonical" href="https://telesacoenmadrid.es/politica-privacidad" />
+<meta property="og:url" content="https://telesacoenmadrid.es/politica-privacidad" />
+<meta property="og:site_name" content="Telesaco en Madrid" />
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="es_ES" />
+<meta property="og:title" content="Política de Privacidad · Telesaco Madrid" />
+<meta property="og:description" content="Política de privacidad de Telesaco a Domicilio Madrid. Tratamiento de datos conforme al RGPD y LOPDGDD." />
+<meta property="og:image" content="https://telesacoenmadrid.es/assets/img/og-cover.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Telesaco a domicilio en Madrid: saco de escombro desde 50 €" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://telesacoenmadrid.es/assets/img/og-cover.jpg" />
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml" />
+<link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="48x48" />
 <link rel="icon" type="image/png" href="/assets/img/favicon-32.png" sizes="32x32" />
 <link rel="icon" type="image/png" href="/assets/img/favicon-192.png" sizes="192x192" />
-<link rel="apple-touch-icon" href="/assets/img/favicon-192.png" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-<style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  :root {
-    --bg:      #0f0f0f;
-    --surface: #1a1a1a;
-    --border:  #2a2a2a;
-    --fg:      #f0f0f0;
-    --muted:   #888;
-    --accent:  #ffd400;
-    --font-display: 'Archivo Black', sans-serif;
-    --font-body:    'Inter', system-ui, sans-serif;
-  }
-
-  html { font-size: 16px; overflow-x: hidden; }
-  body {
-    background: var(--bg);
-    color: var(--fg);
-    font-family: var(--font-body);
-    line-height: 1.7;
-    overflow-x: hidden;
-  }
-
-  /* TOPBAR */
-  .topbar {
-    background: #000;
-    border-bottom: 1px solid var(--border);
-    padding: 8px 16px;
-    text-align: center;
-    font-size: 0.75rem;
-    color: var(--muted);
-  }
-  .topbar a { color: var(--accent); text-decoration: none; }
-
-  /* HEADER */
-  .hd {
-    background: var(--bg);
-    border-bottom: 1px solid var(--border);
-    padding: 14px 24px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-  .hd__brand {
-    display: flex; align-items: center; gap: 10px;
-    text-decoration: none; color: var(--fg);
-  }
-  .hd__name strong { font-family: var(--font-display); font-size: 1.05rem; letter-spacing: 0.02em; color: var(--fg); }
-  .hd__name em { display: block; font-style: normal; font-size: 0.7rem; color: var(--muted); }
-
-  /* CONTENT */
-  .wrap {
-    max-width: 720px;
-    margin: 0 auto;
-    padding: 56px 24px 80px;
-  }
-
-  .badge {
-    display: inline-block;
-    background: var(--accent);
-    color: #000;
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    padding: 3px 10px;
-    border-radius: 2px;
-    margin-bottom: 16px;
-  }
-
-  h1 {
-    font-family: var(--font-display);
-    font-size: clamp(1.8rem, 5vw, 2.6rem);
-    line-height: 1.15;
-    margin-bottom: 8px;
-    color: var(--fg);
-  }
-
-  .meta {
-    font-size: 0.8rem;
-    color: var(--muted);
-    margin-bottom: 48px;
-    padding-bottom: 24px;
-    border-bottom: 1px solid var(--border);
-  }
-
-  h2 {
-    font-family: var(--font-display);
-    font-size: 1.05rem;
-    letter-spacing: 0.01em;
-    color: var(--accent);
-    margin: 40px 0 12px;
-    padding-bottom: 8px;
-    border-bottom: 1px solid var(--border);
-  }
-
-  p { margin-bottom: 14px; font-size: 0.94rem; color: #ccc; }
-
-  ul, ol {
-    margin: 0 0 16px 20px;
-    font-size: 0.94rem;
-    color: #ccc;
-  }
-  li { margin-bottom: 6px; }
-
-  strong { color: var(--fg); }
-
-  a { color: var(--accent); text-decoration: none; }
-  a:hover { text-decoration: underline; }
-
-  .info-box {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-left: 3px solid var(--accent);
-    border-radius: 6px;
-    padding: 16px 20px;
-    margin: 20px 0;
-    font-size: 0.9rem;
-    color: #ccc;
-  }
-  .info-box strong { display: block; margin-bottom: 6px; font-size: 0.95rem; }
-
-  /* FOOTER */
-  .ft {
-    border-top: 1px solid var(--border);
-    padding: 24px;
-    text-align: center;
-    font-size: 0.78rem;
-    color: var(--muted);
-  }
-  .ft a { color: var(--accent); }
-</style>
+<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" />
+<link rel="manifest" href="/site.webmanifest" />
+<link rel="preload" href="/assets/fonts/archivo-black-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+<script src="/src/js/boot.js?v=20261038"></script>
+<link rel="stylesheet" href="/src/css/fonts.css?v=20261038" />
+<link rel="stylesheet" href="/src/css/styles.css?v=20261038" />
+<link rel="stylesheet" href="/src/css/fx.css?v=20261038" />
+<link rel="stylesheet" href="/src/css/fx2.css?v=20261038" />
+<link rel="stylesheet" href="/src/css/landing.css?v=20261038" />
+<link rel="stylesheet" href="/src/css/legal.css?v=20261038" />
 </head>
-<body>
+<body class="sub">
+
+<a class="skip-link" href="#contenido">Saltar al contenido</a>
+<div class="fx-progress" aria-hidden="true"><i></i></div>
+<div class="fx-grain" aria-hidden="true"></div>
 
 <div class="topbar">
-  Disponible ahora · Entrega en 24 h &nbsp;·&nbsp;
-  <a href="tel:+34677882716">677 882 716</a>
-  &nbsp;·&nbsp; L–V 8:00–19:00 · S 9:00–13:00
+  <div class="topbar__inner">
+    <span class="topbar__status"><span class="topbar__dot"></span>Disponible ahora · Entrega en 24 h</span>
+    <span class="topbar__sep">·</span>
+    <a href="tel:+34677882716" class="topbar__phone">677 882 716</a>
+    <span class="topbar__sep">·</span>
+    <span>L–V 8:00–19:00 · S 9:00–13:00</span>
+  </div>
 </div>
 
-<header class="hd">
-  <a href="index.html" class="hd__brand">
-    <svg viewBox="0 0 40 40" width="32" height="32" aria-hidden="true">
-      <rect x="2" y="2" width="36" height="36" rx="8" fill="#FFD400"/>
-      <path d="M10 12 H30 L26 30 H14 Z" fill="#0f0f0f"/>
-      <path d="M14 18 H26" stroke="#FFD400" stroke-width="1.5"/>
-    </svg>
-    <span class="hd__name">
-      <strong>TELESACO</strong>
-      <em>a domicilio · Madrid</em>
-    </span>
+<header class="hd" id="hd">
+  <a href="/" class="hd__brand" aria-label="Telesaco a domicilio · Madrid, inicio">
+    <img class="hd__wm" src="/assets/img/logo-telesaco-completo-claro.svg" alt="Telesaco a domicilio · Madrid" width="190" height="56" />
+    <img class="hd__sack" src="/assets/img/saco-escombro.webp" alt="" width="381" height="400" decoding="async" />
   </a>
+  <nav class="hd__nav" aria-label="Principal">
+    <a href="/#productos">Productos</a>
+    <a href="/#zonas">Zonas</a>
+    <a href="/#comparador">Saco vs Contenedor</a>
+    <a href="/#proceso">Cómo funciona</a>
+    <a href="/#faq">Preguntas</a>
+  </nav>
+  <div class="hd__cta"><a href="/#pedir" class="btn btn--primary">Pedir mi saco</a></div>
+  <button class="hd__burger" id="burger" aria-label="Abrir menú"><span></span><span></span><span></span></button>
 </header>
 
-<main class="wrap">
+<div class="mob-menu" id="mobMenu">
+  <a href="/#productos">Productos</a>
+  <a href="/#zonas">Zonas</a>
+  <a href="/#comparador">Saco vs Contenedor</a>
+  <a href="/#proceso">Cómo funciona</a>
+  <a href="/#faq">Preguntas</a>
+  <a href="/#pedir" class="btn btn--primary btn--xl">Pedir mi saco</a>
+</div>
+
+<main class="wrap legal" id="contenido">
   <span class="badge">Legal</span>
   <h1>Política de Privacidad</h1>
   <p class="meta">Última actualización: junio de 2026 · Responsable: Telesaco a Domicilio Madrid</p>
@@ -246,11 +154,66 @@
 </main>
 
 <footer class="ft">
-  &copy; 2026 Telesaco a Domicilio Madrid &nbsp;·&nbsp;
-  <a href="index.html">Inicio</a>
-  <a href="politica-privacidad.html">Política de Privacidad</a>
-  <a href="condiciones-servicio.html">Condiciones de Servicio</a>
+  <div class="ft__brand">
+    <img class="ft__wm" src="/assets/img/logo-telesaco-completo-claro.svg" alt="Telesaco a domicilio · Madrid" width="920" height="274" loading="lazy" />
+    <img class="ft__sack" src="/assets/img/saco-logo.webp" alt="" width="328" height="383" loading="lazy" decoding="async" />
+  </div>
+  <div class="ft__cols">
+    <div>
+      <p class="ft__h">Productos</p>
+      <a href="/#productos">Telesaco 1 m³</a>
+      <a href="/contenedores-escombro-madrid">Contenedor 3 m³</a>
+      <a href="/contenedores-escombro-madrid">Contenedor 6 m³</a>
+    </div>
+    <div>
+      <p class="ft__h">Municipios con telesaco</p>
+      <a href="/saco-escombro-madrid-capital">Saco escombro Madrid Capital</a>
+      <a href="/saco-escombro-alcorcon">Saco escombro Alcorcón</a>
+      <a href="/saco-escombro-mostoles">Saco escombro Móstoles</a>
+      <a href="/saco-escombro-getafe">Saco escombro Getafe</a>
+      <a href="/saco-escombro-leganes">Saco escombro Leganés</a>
+      <a href="/saco-escombro-fuenlabrada">Saco escombro Fuenlabrada</a>
+      <a href="/saco-escombro-pozuelo-de-alarcon">Saco escombro Pozuelo</a>
+    </div>
+    <div>
+      <p class="ft__h">Más municipios</p>
+      <a href="/saco-escombro-rivas-vaciamadrid">Saco escombro Rivas</a>
+      <a href="/saco-escombro-coslada">Saco escombro Coslada</a>
+      <a href="/saco-escombro-arganda-del-rey">Saco escombro Arganda</a>
+      <a href="/saco-escombro-parla">Saco escombro Parla</a>
+      <a href="/saco-escombro-san-sebastian-de-los-reyes">Saco escombro Sanse</a>
+      <a href="/saco-escombro-san-fernando-de-henares">Saco escombro S. Fernando</a>
+    </div>
+    <div>
+      <p class="ft__h">Empresa</p>
+      <a href="/#proceso">Cómo funciona</a>
+      <a href="/#faq">FAQ</a>
+      <a href="/politica-privacidad">Política de privacidad</a>
+      <a href="/condiciones">Condiciones del servicio</a>
+      <a href="/aviso-legal">Aviso legal</a>
+    </div>
+    <div>
+      <p class="ft__h">Contacto</p>
+      <a href="tel:+34677882716">677 882 716</a>
+      <a href="https://wa.me/34677882716" target="_blank" rel="noopener">WhatsApp</a>
+      <span>L–V 8:00–19:00 · S 9:00–13:00</span>
+    </div>
+  </div>
+  <div class="ft__bar">
+    <small>© <span id="y"></span> Telesaco en Madrid · Servicio en toda la Comunidad de Madrid</small>
+    <small>Gestor autorizado de RCDs</small>
+  </div>
 </footer>
 
+<a href="https://wa.me/34677882716?text=Hola,%20quiero%20un%20telesaco" class="wsp" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <span class="wsp__tip" aria-hidden="true">¿Hablamos?</span>
+  <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M20.52 3.48A11.82 11.82 0 0 0 12 0C5.37 0 .01 5.36.01 11.98c0 2.11.55 4.17 1.6 5.98L0 24l6.2-1.63a11.95 11.95 0 0 0 5.79 1.48h.01c6.62 0 11.99-5.36 11.99-11.98a11.9 11.9 0 0 0-3.47-8.39z"/></svg>
+</a>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="/src/js/main.js?v=20261038" defer></script>
+<script src="/src/js/fx.js?v=20261038" defer></script>
+<script src="/src/js/fx2.js?v=20261038" defer></script>
 </body>
 </html>

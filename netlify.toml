@@ -1,11 +1,21 @@
+# Telesaco en Madrid — configuración de Netlify
+# Solo se publica lo que copia el build (carpeta dist): nada de scripts, funciones ni ficheros internos.
 [build]
-  publish = "."
+  command   = "rm -rf dist && mkdir dist && cp -r assets src *.html robots.txt sitemap.xml llms.txt site.webmanifest favicon.ico dist/"
+  publish   = "dist"
   functions = "netlify/functions"
 
 [functions]
   node_bundler = "esbuild"
 
-# ===== Legal pages (URLs limpias) =====
+# ===== Páginas con URL limpia =====
+# La dirección técnica de Netlify no debe servir una copia de la web
+[[redirects]]
+  from = "https://telesaco-madrid.netlify.app/*"
+  to   = "https://telesacoenmadrid.es/:splat"
+  status = 301
+  force = true
+
 [[redirects]]
   from = "/politica-privacidad"
   to   = "/politica-privacidad.html"
@@ -21,29 +31,25 @@
   to   = "/aviso-legal.html"
   status = 200
 
-# ===== Páginas info =====
-[[redirects]]
-  from = "/sobre-nosotros"
-  to   = "/sobre-nosotros.html"
-  status = 200
-
-[[redirects]]
-  from = "/contacto"
-  to   = "/contacto.html"
-  status = 200
-
-# ===== Pillar pages =====
-[[redirects]]
-  from = "/sacos-escombro-madrid"
-  to   = "/sacos-escombro-madrid.html"
-  status = 200
-
 [[redirects]]
   from = "/contenedores-escombro-madrid"
   to   = "/contenedores-escombro-madrid.html"
   status = 200
 
-# ===== Landings por municipio - SACO =====
+# Versión antigua de las condiciones -> vigente
+[[redirects]]
+  from = "/condiciones-servicio"
+  to   = "/condiciones"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/condiciones-servicio.html"
+  to   = "/condiciones"
+  status = 301
+  force = true
+
+# ===== Landings por municipio (saco) =====
 [[redirects]]
   from = "/saco-escombro-madrid-capital"
   to   = "/saco-escombro-madrid-capital.html"
@@ -109,10 +115,32 @@
   to   = "/saco-escombro-san-fernando-de-henares.html"
   status = 200
 
-# ===== Headers CORS para funciones =====
+# ===== Cabeceras de seguridad =====
 [[headers]]
-  for = "/.netlify/functions/*"
+  for = "/*"
   [headers.values]
-    Access-Control-Allow-Origin = "*"
-    Access-Control-Allow-Headers = "Content-Type"
-    Access-Control-Allow-Methods = "POST, OPTIONS"
+    Strict-Transport-Security = "max-age=31536000"
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "DENY"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()"
+    Cross-Origin-Opener-Policy = "same-origin"
+    Content-Security-Policy = "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests"
+
+# La confirmación de pedido no debe indexarse ni guardarse en caché
+[[headers]]
+  for = "/success.html"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+    Cache-Control = "no-store"
+
+# ===== Caché =====
+[[headers]]
+  for = "/assets/fonts/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/assets/img/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
