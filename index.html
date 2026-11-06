@@ -327,7 +327,7 @@
     <img class="hd__sack" src="assets/img/saco-escombro-s.webp" alt="" width="240" height="252" decoding="async" />
   </a>
 
-  <nav class="hd__nav">
+  <nav class="hd__nav" aria-label="Principal">
     <a href="#productos" data-link>Productos</a>
     <a href="#zonas" data-link>Zonas</a>
     <a href="#comparador" data-link>Saco vs Contenedor</a>
@@ -350,6 +350,11 @@
   <a href="#comparador" data-link>Saco vs Contenedor</a>
   <a href="#proceso" data-link>Cómo funciona</a>
   <a href="#faq" data-link>Preguntas</a>
+  <a href="#pedir" class="btn btn--primary btn--xl" data-link>Pedir mi saco</a>
+  <div class="mob-menu__contact">
+    <a href="tel:+34677882716" class="mob-menu__tel">📞 677 882 716</a>
+    <a href="https://wa.me/34677882716?text=Hola,%20quiero%20un%20telesaco" target="_blank" rel="noopener" class="mob-menu__wsp">💬 WhatsApp directo</a>
+  </div>
 </div>
 
 <main id="contenido">
@@ -635,61 +640,90 @@
 
   <div class="prods">
     <article class="prod prod--featured">
-      <div class="prod__badge">Más vendido</div>
+      <div class="prod__badge">★ Más vendido</div>
       <div class="prod__art">
+        <span class="prod__spec prod__spec--tl">90 × 90 × 100 cm</span>
+        <span class="prod__spec prod__spec--br">Máx. 1.000 kg</span>
         <img src="assets/img/saco-escombro-s.webp" alt="Alquiler de saco de escombro 1 m³ a domicilio en Madrid" loading="lazy" width="240" height="252" />
       </div>
-      <h3>Telesaco Estándar</h3>
-      <p class="prod__cap">1 m³ · hasta 1.000 kg</p>
+      <div class="prod__meta-row">
+        <h3>Telesaco Estándar</h3>
+        <span class="prod__vol">1 m³</span>
+      </div>
+      <p class="prod__cap">1 m³ · hasta 1.000 kg · Sin límite de días</p>
       <ul class="prod__list">
         <li>Reforma de baño completo</li>
-        <li>Cocina pequeña</li>
-        <li>Cabe en aceras anchas</li>
+        <li>Cocina pequeña o tabique</li>
+        <li>Cabe en aceras estrechas (1 m²)</li>
+        <li>Lo llenas a tu ritmo, sin prisa</li>
       </ul>
       <div class="prod__price">
-        <span>precio único</span>
+        <span>precio único · IVA incl.</span>
         <strong>55<i>€</i></strong>
       </div>
-      <p class="prod__shipping-note">Sin gastos de envío · entrega y recogida incluidas</p>
-      <a href="#pedir" class="btn btn--primary btn--full" data-link>Pedir saco estándar</a>
+      <p class="prod__shipping-note">✓ Sin gastos de envío · entrega y recogida incluidas</p>
+      <a href="#pedir" class="btn btn--primary btn--full" data-link data-select-prod="saco">
+        <span>Pedir saco estándar</span>
+        <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
     </article>
 
     <article class="prod">
+      <div class="prod__badge prod__badge--ghost">Obra mediana</div>
       <div class="prod__art">
+        <span class="prod__spec prod__spec--tl">2,2 × 1,2 m</span>
+        <span class="prod__spec prod__spec--br">Máx. 3.000 kg</span>
         <img src="assets/img/contenedor.webp" alt="Alquiler contenedor metálico de escombro 3 m³ en Madrid" loading="lazy" width="266" height="155" />
       </div>
-      <h3>Contenedor 3 m³</h3>
-      <p class="prod__cap">3 m³ · obra mediana</p>
+      <div class="prod__meta-row">
+        <h3>Contenedor 3 m³</h3>
+        <span class="prod__vol">3 m³</span>
+      </div>
+      <p class="prod__cap">3 m³ · obra mediana · Hasta 2 semanas</p>
       <ul class="prod__list">
         <li>Reforma vivienda 60–90 m²</li>
-        <li>Local pequeño</li>
-        <li>Recogida cuando avises</li>
+        <li>Local pequeño o derribo parcial</li>
+        <li>Equivale a 3 sacos grandes</li>
+        <li>Recogida con camión grúa</li>
       </ul>
       <div class="prod__price">
-        <span>desde</span>
+        <span>desde · IVA incl.</span>
         <strong>190<i>€</i></strong>
       </div>
-      <p class="prod__shipping-note">Precio varía según zona · entrega incluida</p>
-      <a href="#pedir" class="btn btn--ghost btn--full" data-link>Pedir contenedor 3 m³</a>
+      <p class="prod__shipping-note">Precio según radio · entrega y recogida incluidas</p>
+      <a href="#pedir" class="btn btn--ghost btn--full" data-link data-select-prod="cont3">
+        <span>Pedir contenedor 3 m³</span>
+        <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
     </article>
 
     <article class="prod">
+      <div class="prod__badge prod__badge--ghost">Gran volumen</div>
       <div class="prod__art">
+        <span class="prod__spec prod__spec--tl">3,5 × 1,8 m</span>
+        <span class="prod__spec prod__spec--br">Máx. 6.000 kg</span>
         <img src="assets/img/contenedor.webp" alt="Alquiler contenedor metálico de escombro 6 m³ en Madrid" loading="lazy" width="266" height="155" />
       </div>
-      <h3>Contenedor 6 m³</h3>
-      <p class="prod__cap">6 m³ · obra grande</p>
+      <div class="prod__meta-row">
+        <h3>Contenedor 6 m³</h3>
+        <span class="prod__vol">6 m³</span>
+      </div>
+      <p class="prod__cap">6 m³ · obra grande · Hasta 2 semanas</p>
       <ul class="prod__list">
         <li>Reformas integrales 100 m²+</li>
-        <li>Locales y oficinas</li>
-        <li>Demoliciones</li>
+        <li>Locales comerciales y oficinas</li>
+        <li>Demoliciones y vaciados grandes</li>
+        <li>Máximo ahorro por metro cúbico</li>
       </ul>
       <div class="prod__price">
-        <span>desde</span>
+        <span>desde · IVA incl.</span>
         <strong>220<i>€</i></strong>
       </div>
-      <p class="prod__shipping-note">Precio varía según zona · entrega incluida</p>
-      <a href="#pedir" class="btn btn--ghost btn--full" data-link>Pedir contenedor 6 m³</a>
+      <p class="prod__shipping-note">Precio según radio · entrega y recogida incluidas</p>
+      <a href="#pedir" class="btn btn--ghost btn--full" data-link data-select-prod="cont6">
+        <span>Pedir contenedor 6 m³</span>
+        <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
     </article>
   </div>
 </section>
@@ -724,12 +758,17 @@
 
   <!-- Saco flat price -->
   <div class="saco-flat">
+    <img class="saco-flat__art" src="assets/img/saco-escombro-s.webp" alt="" width="240" height="252" loading="lazy" decoding="async" />
     <div class="saco-flat__info">
+      <span class="saco-flat__tag">Tarifa Plana Telesaco · 1 m³</span>
       <strong>Saco de escombro · Precio único</strong>
-      <span>Precio único en los 13 municipios donde operamos</span>
-      <small><b>Sin gastos de envío</b> · entrega y recogida incluidas</small>
+      <span>Mismo precio cerrado en los 13 municipios donde operamos</span>
+      <small><b>✓ Sin gastos de envío</b> · Entrega en 24 h · Recogida y gestión de residuos incluidas</small>
     </div>
-    <div class="saco-flat__price">55<i>€</i></div>
+    <div class="saco-flat__right">
+      <div class="saco-flat__price">55<i>€</i></div>
+      <a href="#pedir" class="btn btn--primary" data-link data-select-prod="saco">Pedir por 55 €</a>
+    </div>
   </div>
 
   <!-- Telesaco municipalities -->
@@ -738,10 +777,10 @@
       <div class="towns__head-left">
         <span class="towns__kicker">
           <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 0 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg>
-          Cobertura
+          Cobertura Telesaco
         </span>
         <h3 class="towns__title">Tu saco llega <em>mañana</em> en estos 13 municipios</h3>
-        <p class="towns__sub">Precio único de 50&nbsp;€. Entrega y recogida incluidas.</p>
+        <p class="towns__sub">Precio único de 55&nbsp;€ IVA incluido. Pulsa tu municipio para ver información y ordenanzas locales.</p>
       </div>
       <div class="towns__stats" aria-hidden="true">
         <div class="towns__stat"><b>13</b><span>municipios</span></div>
@@ -751,7 +790,7 @@
     </div>
 
     <ul class="towns__grid" role="list">
-      <li><a class="town" href="/saco-escombro-madrid-capital"><span class="town__pin"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 0 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg></span><span class="town__name">Madrid Capital</span><span class="town__badge">★</span></a></li>
+      <li><a class="town" href="/saco-escombro-madrid-capital"><span class="town__pin"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 0 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg></span><span class="town__name">Madrid Capital</span><span class="town__badge">21 distritos ★</span></a></li>
       <li><a class="town" href="/saco-escombro-alcorcon"><span class="town__pin"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 0 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg></span><span class="town__name">Alcorcón</span></a></li>
       <li><a class="town" href="/saco-escombro-mostoles"><span class="town__pin"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 0 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg></span><span class="town__name">Móstoles</span></a></li>
       <li><a class="town" href="/saco-escombro-getafe"><span class="town__pin"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 0 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg></span><span class="town__name">Getafe</span></a></li>
@@ -767,12 +806,21 @@
     </ul>
 
     <p class="towns__foot">
-      ¿No ves tu municipio? Tenemos <a href="#zonas">contenedores metálicos</a> en toda la Comunidad de Madrid.
+      ¿No ves tu municipio? Tenemos <a href="/contenedores-escombro-madrid">contenedores metálicos de 3 y 6 m³</a> en 63 municipios de la Comunidad de Madrid.
     </p>
   </section>
 
   <!-- Container zones -->
-  <p class="zones__kicker">Contenedores metálicos · Precio por zona</p>
+  <div class="zones__toolbar">
+    <div>
+      <p class="zones__kicker">Contenedores metálicos · Precio por zona (63 municipios)</p>
+      <p class="zones__subhint">Haz clic en cualquier municipio para calcular tu pedido automáticamente</p>
+    </div>
+    <label class="zones__search" aria-label="Buscar municipio para contenedor">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      <input type="search" id="zoneFilter" placeholder="Buscar municipio (ej. Alcalá, Las Rozas…)" autocomplete="off" />
+    </label>
+  </div>
 
   <div class="zones__radios">
     <div class="radio-card">
@@ -888,22 +936,25 @@
   <p class="compare__hint">← Desliza para ver la tabla completa →</p>
   <div class="compare__table">
     <div class="row row--head">
-      <div></div>
-      <div>Telesaco 1 m³</div>
+      <div>Formato</div>
+      <div class="col-featured-head">
+        <span class="col-featured-badge">★ Más elegido</span>
+        <span>Telesaco 1 m³</span>
+      </div>
       <div>Contenedor 3 m³</div>
       <div>Contenedor 6 m³</div>
     </div>
     <div class="row">
-      <div>Precio</div>
-      <div><b>55€</b> <small style="color:rgba(255,255,255,.5);font-size:11px">sin envío</small></div>
-      <div>190€ – 230€</div>
-      <div>220€ – 260€</div>
+      <div>Precio (IVA incl.)</div>
+      <div><b>55€</b> <span class="row__pill">Precio único</span></div>
+      <div><b>190€ – 230€</b> <small class="row__sub">según zona</small></div>
+      <div><b>220€ – 260€</b> <small class="row__sub">según zona</small></div>
     </div>
     <div class="row">
       <div>Capacidad</div>
-      <div>1 m³ · 1.000 kg</div>
-      <div>3 m³</div>
-      <div>6 m³</div>
+      <div><b>1 m³</b> · hasta 1.000 kg</div>
+      <div><b>3 m³</b> · hasta 3.000 kg</div>
+      <div><b>6 m³</b> · hasta 6.000 kg</div>
     </div>
     <div class="row">
       <div>Permiso municipal</div>
@@ -913,27 +964,27 @@
     </div>
     <div class="row">
       <div>Espacio que ocupa</div>
-      <div>1 m × 1 m</div>
-      <div>2,2 m × 1,2 m</div>
-      <div>3,5 m × 1,8 m</div>
+      <div><span class="ok">1 m × 1 m</span> (acera o calzada)</div>
+      <div>2,2 m × 1,2 m (plaza parking)</div>
+      <div>3,5 m × 1,8 m (plaza parking)</div>
     </div>
     <div class="row">
       <div>Plazo de retirada</div>
-      <div>cuando avises</div>
-      <div>hasta 2 semanas</div>
-      <div>hasta 2 semanas</div>
+      <div><span class="ok">Sin límite · cuando avises</span></div>
+      <div>Hasta 2 semanas</div>
+      <div>Hasta 2 semanas</div>
     </div>
     <div class="row">
       <div>Ideal para…</div>
-      <div>Reforma 1 baño</div>
+      <div>Reforma 1 baño o cocina</div>
       <div>Reforma piso 60–90 m²</div>
-      <div>Integral o local</div>
+      <div>Obra integral o local</div>
     </div>
     <div class="row row--cta">
       <div></div>
-      <div><a href="#pedir" class="btn btn--primary" data-link>Pedir saco</a></div>
-      <div><a href="#pedir" class="btn btn--ghost" data-link>Pedir 3 m³</a></div>
-      <div><a href="#pedir" class="btn btn--ghost" data-link>Pedir 6 m³</a></div>
+      <div><a href="#pedir" class="btn btn--primary" data-link data-select-prod="saco">Pedir saco · 55€</a></div>
+      <div><a href="#pedir" class="btn btn--ghost" data-link data-select-prod="cont3">Pedir 3 m³</a></div>
+      <div><a href="#pedir" class="btn btn--ghost" data-link data-select-prod="cont6">Pedir 6 m³</a></div>
     </div>
   </div>
 </section>
@@ -947,19 +998,28 @@
 
   <ol class="steps__grid">
     <li class="step">
-      <span class="step__n">1</span>
+      <div class="step__top">
+        <span class="step__n">1</span>
+        <span class="step__tag">En 60 segundos</span>
+      </div>
       <h3>Lo pides</h3>
-      <p>Por web, WhatsApp o teléfono. En 60 segundos lo tienes reservado y con franja horaria.</p>
+      <p>Por web, WhatsApp o teléfono. En 60 segundos lo tienes reservado y con franja horaria confirmada.</p>
     </li>
     <li class="step">
-      <span class="step__n">2</span>
+      <div class="step__top">
+        <span class="step__n">2</span>
+        <span class="step__tag">Entrega 24 h</span>
+      </div>
       <h3>Te lo dejamos</h3>
       <p>Lo dejamos en la calle, junto a tu obra, para poder recogerlo bien. Necesitas la <b>licencia de ocupación de vía pública</b> del Ayuntamiento; te orientamos con el trámite.</p>
     </li>
     <li class="step">
-      <span class="step__n">3</span>
+      <div class="step__top">
+        <span class="step__n">3</span>
+        <span class="step__tag">Retirada &lt; 48 h</span>
+      </div>
       <h3>Lo recogemos</h3>
-      <p>Nos avisas cuando esté lleno y se lo lleva la grúa. Reciclaje en planta autorizada y certificado de retirada.</p>
+      <p>Nos avisas cuando esté lleno y se lo lleva nuestro camión grúa. Reciclaje en planta autorizada y certificado oficial de retirada.</p>
     </li>
   </ol>
 </section>
@@ -973,27 +1033,38 @@
 
   <div class="allowed__cols">
     <div class="allowed__col allowed__col--ok">
-      <h3><span>✓</span> Sí se puede</h3>
+      <div class="allowed__head">
+        <h3><span>✓</span> Sí se puede</h3>
+        <em class="allowed__pill allowed__pill--ok">Residuos RCD limpios</em>
+      </div>
       <ul>
         <li>Escombros de obra (azulejos, ladrillo, mortero)</li>
-        <li>Hormigón, yeso, cerámica</li>
+        <li>Hormigón, yeso, escayola y cerámica</li>
         <li>Restos de tabiques y mampostería</li>
         <li>Piezas de pavimento y revestimiento</li>
-        <li>Fragmentos de madera de obra</li>
+        <li>Fragmentos de madera limpia de obra</li>
       </ul>
     </div>
     <div class="allowed__col allowed__col--no">
-      <h3><span>✗</span> No se puede</h3>
+      <div class="allowed__head">
+        <h3><span>✗</span> No se puede</h3>
+        <em class="allowed__pill allowed__pill--no">Peligrosos o mezclados</em>
+      </div>
       <ul>
         <li>Vidrio (lunas, espejos, cristales)</li>
-        <li>Pintura sólida o líquida</li>
+        <li>Pintura sólida, botes o disolventes</li>
         <li>Restos de poda o jardinería en general</li>
         <li>Líquidos, aceites o productos químicos</li>
-        <li>Amianto / fibrocemento</li>
-        <li>Productos inflamables</li>
-        <li>Electrodomésticos o basura general</li>
+        <li>Amianto / fibrocemento (uralita)</li>
+        <li>Productos inflamables o tóxicos</li>
+        <li>Electrodomésticos, colchones o basura doméstica</li>
       </ul>
     </div>
+  </div>
+
+  <div class="allowed__help">
+    <p><strong>¿Tienes dudas con un residuo concreto?</strong> Envíanos una foto por WhatsApp y te confirmamos al momento si puede ir en el saco o contenedor.</p>
+    <a href="https://wa.me/34677882716?text=Hola,%20tengo%20una%20duda%20sobre%20qu%C3%A9%20escombro%20puedo%20tirar" target="_blank" rel="noopener" class="btn btn--primary">Consultar por WhatsApp</a>
   </div>
 </section>
 
@@ -1002,28 +1073,59 @@
   <header class="sec-head">
     <span class="kicker">— Lo dice Google</span>
     <h2 class="h2">412 opiniones · 4,9 ★</h2>
+    <div class="rev-summary">
+      <span class="rev-summary__g" aria-hidden="true">G</span>
+      <div class="rev-summary__info">
+        <strong>Excelente 4,9 / 5,0 <span class="rev-summary__stars">★★★★★</span></strong>
+        <small>Basado en +412 reseñas verificadas de clientes en la Comunidad de Madrid</small>
+      </div>
+    </div>
   </header>
 
   <div class="rev__grid">
     <article class="rev">
-      <div class="rev__stars">★★★★★</div>
+      <div class="rev__top">
+        <div class="rev__stars" aria-label="5 de 5 estrellas">★★★★★</div>
+        <span class="rev__verified">✓ Cliente verificado</span>
+      </div>
       <p>«Pedí el saco a las 10 de la mañana, lo tenía a las 14:00. Dos días después una llamada y se lo llevaron. <b>Mucho más rápido que ir al punto limpio.</b>»</p>
-      <footer><strong>Marta · Chamberí</strong><span>Reforma baño</span></footer>
+      <footer>
+        <span class="rev__avatar" aria-hidden="true">M</span>
+        <div><strong>Marta · Chamberí</strong><span>Reforma baño</span></div>
+      </footer>
     </article>
     <article class="rev">
-      <div class="rev__stars">★★★★★</div>
+      <div class="rev__top">
+        <div class="rev__stars" aria-label="5 de 5 estrellas">★★★★★</div>
+        <span class="rev__verified">✓ Cliente verificado</span>
+      </div>
       <p>«El contratista del piso de arriba puso un contenedor que tardó <b>3 semanas</b> en quitar. Yo cogí dos telesacos, los llené y desaparecieron al día siguiente.»</p>
-      <footer><strong>Andrés · Móstoles</strong><span>Reforma cocina</span></footer>
+      <footer>
+        <span class="rev__avatar" aria-hidden="true">A</span>
+        <div><strong>Andrés · Móstoles</strong><span>Reforma cocina</span></div>
+      </footer>
     </article>
     <article class="rev">
-      <div class="rev__stars">★★★★★</div>
+      <div class="rev__top">
+        <div class="rev__stars" aria-label="5 de 5 estrellas">★★★★★</div>
+        <span class="rev__verified">✓ Cliente verificado</span>
+      </div>
       <p>«Servicio impecable. Nos llamaron para confirmar, nos avisaron al llegar y al irse. <b>Y el precio fue exactamente el de la web.</b>»</p>
-      <footer><strong>Lucía · Pozuelo</strong><span>Vaciado de trastero</span></footer>
+      <footer>
+        <span class="rev__avatar" aria-hidden="true">L</span>
+        <div><strong>Lucía · Pozuelo</strong><span>Vaciado de trastero</span></div>
+      </footer>
     </article>
     <article class="rev">
-      <div class="rev__stars">★★★★★</div>
+      <div class="rev__top">
+        <div class="rev__stars" aria-label="5 de 5 estrellas">★★★★★</div>
+        <span class="rev__verified">✓ Cliente verificado</span>
+      </div>
       <p>«Llevo 6 contenedores con ellos en obras de mi inmobiliaria. <b>Cero incidencias en dos años</b>. Recomendados al 100%.»</p>
-      <footer><strong>Roberto · Getafe</strong><span>Profesional</span></footer>
+      <footer>
+        <span class="rev__avatar" aria-hidden="true">R</span>
+        <div><strong>Roberto · Getafe</strong><span>Profesional</span></div>
+      </footer>
     </article>
   </div>
 </section>

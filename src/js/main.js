@@ -98,13 +98,18 @@
     if (prod === 'saco') {
       total = qty * PRICES.saco.unit;
       if (shipNote) {
-        shipNote.textContent = '\u2713 Sin gastos de env\u00edo';
+        shipNote.textContent = qty > 1
+          ? `${qty} \u00d7 ${PRICES.saco.unit} \u20ac \u00b7 \u2713 Sin gastos de env\u00edo`
+          : '\u2713 Sin gastos de env\u00edo';
         shipNote.className   = 'calc__shipping calc__shipping--free';
       }
     } else {
-      total = PRICES[prod][radio] * qty;
+      const unit = PRICES[prod][radio];
+      total = unit * qty;
       if (shipNote) {
-        shipNote.textContent = 'Entrega y recogida incluidas';
+        shipNote.textContent = qty > 1
+          ? `${qty} \u00d7 ${unit} \u20ac \u00b7 Entrega y recogida incl.`
+          : 'Entrega y recogida incluidas';
         shipNote.className   = 'calc__shipping calc__shipping--free';
       }
     }
@@ -112,14 +117,81 @@
     window.fxBump?.(totalEl?.closest('.calc__total'));
   }
 
+  function activateProdButton(val) {
+    const btn = segBtns.find(b => b.dataset.val === val);
+    if (!btn) return;
+    segBtns.forEach(x => x.classList.remove('is-on'));
+    btn.classList.add('is-on');
+    switchProduct(val);
+    update();
+  }
+
   segBtns.forEach(b => {
     b.addEventListener('click', () => {
-      segBtns.forEach(x => x.classList.remove('is-on'));
-      b.classList.add('is-on');
-      switchProduct(b.dataset.val);
-      update();
+      activateProdButton(b.dataset.val);
     });
   });
+
+  // Botones de catálogo y comparador que preseleccionan el formato en la calculadora
+  $$('[data-select-prod]').forEach(el => {
+    el.addEventListener('click', () => {
+      const targetProd = el.dataset.selectProd;
+      if (targetProd) activateProdButton(targetProd);
+    });
+  });
+
+  // Normalizador para cruzar nombres de municipios con el select #zone
+  const norm = (s) => (s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, ' ').trim();
+
+  // Hacer clicables los municipios de las tarjetas Radio 1, 2 y 3 + buscador en vivo
+  const radioLis = $$('.radio-card ul li');
+  if (radioLis.length && zoneSel) {
+    const opts = [...zoneSel.querySelectorAll('option')];
+    radioLis.forEach(li => {
+      const name = li.textContent.trim();
+      const nName = norm(name);
+      const matchOpt = opts.find(o => norm(o.textContent) === nName);
+      if (matchOpt) {
+        li.dataset.zoneVal = matchOpt.value;
+        li.setAttribute('role', 'button');
+        li.setAttribute('tabindex', '0');
+        li.setAttribute('title', `Calcular contenedor en ${name}`);
+        const pickMuni = () => {
+          if (prod === 'saco') activateProdButton('cont3');
+          zoneSel.value = matchOpt.value;
+          radio = matchOpt.parentElement?.dataset.radio || 'r1';
+          update();
+          const pedir = $('#pedir');
+          if (pedir) {
+            const tb = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--tb')) || 0;
+            const off = tb + (document.querySelector('.hd')?.offsetHeight || 70) + 16;
+            const y = pedir.getBoundingClientRect().top + window.scrollY - off;
+            window.scrollTo({ top: y, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+          }
+          window.fxToast?.(`Municipio seleccionado: ${name} (Contenedor)`);
+        };
+        li.addEventListener('click', pickMuni);
+        li.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pickMuni(); }
+        });
+      }
+    });
+
+    const filterIn = $('#zoneFilter');
+    filterIn?.addEventListener('input', () => {
+      const q = norm(filterIn.value);
+      $$('.radio-card').forEach(card => {
+        let visibleCount = 0;
+        $$('ul li', card).forEach(li => {
+          const hit = !q || norm(li.textContent).includes(q);
+          li.classList.toggle('is-dim', Boolean(q && !hit));
+          li.classList.toggle('is-match', Boolean(q && hit));
+          if (hit) visibleCount++;
+        });
+        card.classList.toggle('is-empty-filter', Boolean(q && visibleCount === 0));
+      });
+    });
+  }
 
   zoneSel?.addEventListener('change', () => {
     radio = zoneSel.selectedOptions[0]?.parentElement?.dataset.radio || 'r1';

@@ -36,14 +36,16 @@
     padding: 32px 24px;
   }
   .check {
-    width: 80px; height: 80px;
+    width: 84px; height: 84px;
     border-radius: 50%;
-    background: var(--green);
+    background: var(--y);
+    border: 3px solid var(--ink);
+    box-shadow: 6px 6px 0 var(--ink);
     display: flex; align-items: center; justify-content: center;
     margin: 0 auto 28px;
     animation: pop 0.5s cubic-bezier(.2,.7,.2,1);
   }
-  .check svg { width: 40px; height: 40px; }
+  .check svg { width: 42px; height: 42px; stroke: var(--ink); }
   @keyframes pop {
     0%   { transform: scale(0); opacity: 0; }
     80%  { transform: scale(1.1); }
@@ -51,24 +53,26 @@
   }
   h1 {
     font-family: var(--f-display);
-    font-size: clamp(28px, 6vw, 48px);
+    font-size: clamp(30px, 6vw, 52px);
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
     margin: 0 0 16px;
-    line-height: 1.1;
+    line-height: 1.05;
   }
   .sub {
     font-size: 18px;
-    color: #444;
+    color: #333;
     max-width: 480px;
-    margin: 0 auto 40px;
+    margin: 0 auto 36px;
     line-height: 1.6;
   }
   .steps {
     display: flex;
     flex-direction: column;
     gap: 14px;
-    max-width: 400px;
+    max-width: 440px;
     width: 100%;
-    margin: 0 auto 40px;
+    margin: 0 auto 36px;
     text-align: left;
   }
   .step {
@@ -76,17 +80,19 @@
     align-items: flex-start;
     gap: 14px;
     background: #fff;
-    border: 1.5px solid #e1d9c5;
-    border-radius: 14px;
-    padding: 16px 18px;
+    border: 2px solid var(--ink);
+    box-shadow: 6px 6px 0 var(--ink);
+    border-radius: 16px;
+    padding: 18px 20px;
   }
   .step__num {
     background: var(--y);
     color: var(--ink);
+    border: 1.5px solid var(--ink);
     font-family: var(--f-display);
-    font-size: 13px;
-    width: 28px; height: 28px;
-    border-radius: 50%;
+    font-size: 14px;
+    width: 32px; height: 32px;
+    border-radius: 10px;
     display: flex; align-items: center; justify-content: center;
     flex-shrink: 0;
   }

@@ -56,6 +56,10 @@ ${NAV.map(([h, t]) => `    <a href="${h}">${t}</a>`).join('\n')}
 <div class="mob-menu" id="mobMenu">
 ${NAV.map(([h, t]) => `  <a href="${h}">${t}</a>`).join('\n')}
   <a href="/#pedir" class="btn btn--primary btn--xl">Pedir mi saco</a>
+  <div class="mob-menu__contact">
+    <a href="tel:+34677882716" class="mob-menu__tel">📞 677 882 716</a>
+    <a href="https://wa.me/34677882716?text=Hola,%20quiero%20un%20telesaco" target="_blank" rel="noopener" class="mob-menu__wsp">💬 WhatsApp directo</a>
+  </div>
 </div>
 `;
 

@@ -146,14 +146,14 @@ ${C.wsp(wspHref, wspLabel)}
 }
 
 function transformLegal(html) {
-  if (html.includes('class="wrap legal"')) return html;
   const head = html.slice(0, html.indexOf('</head>'))
     .replace(/<style>[\s\S]*?<\/style>\n?/, '')
     .replace(/<meta name="viewport"[^>]*>/, '<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />')
-    .replace(/<link rel="icon"[\s\S]*?<link rel="apple-touch-icon"[^\n]*\n/, C.ICONS + '\n')
+    .replace(/<link rel="icon"[\s\S]*?<link rel="apple-touch-icon"[^\n]*\n(<link rel="manifest"[^\n]*\n)?/, C.ICONS + '\n')
     .replace(/<link rel="preconnect"[\s\S]*?rel="stylesheet" \/>\n/, C.FONTS + '\n' + C.STYLES(['/src/css/landing.css', '/src/css/legal.css']) + '\n')
+    .replace(/<script src="\/src\/js\/boot\.js[^\n]*\n(<link rel="stylesheet" href="\/src\/css\/[^"]*" \/>\n)+/, C.STYLES(['/src/css/landing.css', '/src/css/legal.css']) + '\n')
     + '</head>';
-  const main = grab(html, /<main class="wrap">([\s\S]*?)<\/main>/);
+  const main = grab(html, /<main class="wrap(?:\s+legal)?"[^>]*>([\s\S]*?)<\/main>/);
   return head + '\n<body class="sub">\n\n' + C.top() + '\n<main class="wrap legal" id="contenido">' + main + '</main>\n\n' + C.footer() + '\n' + C.wsp() + '\n</body>\n</html>\n';
 }
 
