@@ -109,6 +109,24 @@ const clean = (v, max) => (typeof v === 'string'
   ? v.replace(/[\u0000-\u001f\u007f<>]/g, ' ').replace(/\s+/g, ' ').trim().slice(0, max)
   : '');
 
+// DNI, NIE o CIF español con su letra o dígito de control (misma lógica que la web)
+const normNif = (v) => (typeof v === 'string' ? v.toUpperCase().replace(/[\s.-]/g, '').slice(0, 12) : '');
+const validNif = (v) => {
+  const L = 'TRWAGMYFPDXBNJZSQVHLCKE';
+  if (/^\d{8}[A-Z]$/.test(v)) return L[+v.slice(0, 8) % 23] === v[8];
+  if (/^[XYZ]\d{7}[A-Z]$/.test(v)) return L[+('XYZ'.indexOf(v[0]) + v.slice(1, 8)) % 23] === v[8];
+  if (/^[ABCDEFGHJNPQRSUVWKLM]\d{7}[0-9A-J]$/.test(v)) {
+    const d = v.slice(1, 8).split('').map(Number);
+    const odd = d.reduce((t, n, i) => t + (i % 2 === 0 ? (n * 2 > 9 ? n * 2 - 9 : n * 2) : n), 0);
+    const c = (10 - (odd % 10)) % 10;
+    const letter = 'JABCDEFGHI'[c];
+    if ('PQRSNWKLM'.includes(v[0])) return v[8] === letter;
+    if ('ABEH'.includes(v[0])) return v[8] === String(c);
+    return v[8] === String(c) || v[8] === letter;
+  }
+  return false;
+};
+
 exports.handler = async (event) => {
   if (event.httpMethod !== 'POST') return { statusCode: 405, headers: { Allow: 'POST' }, body: 'Method Not Allowed' };
 
@@ -143,8 +161,10 @@ exports.handler = async (event) => {
   if (!Number.isInteger(qty) || qty < 1 || qty > MAX_QTY) return json(400, { error: 'Cantidad no válida' });
 
   const name = clean(b.name, 80);
+  const taxId = normNif(b.taxId);
   const phone = clean(b.phone, 20);
   const address = clean(b.address, 200);
+  if (!validNif(taxId)) return json(400, { error: 'Revisa el DNI, NIE o CIF' });
   if (name.length < 2 || !/^\+?[\d\s().-]{9,20}$/.test(phone) || address.length < 5) {
     return json(400, { error: 'Revisa nombre, teléfono y dirección' });
   }
@@ -175,7 +195,7 @@ exports.handler = async (event) => {
 
   // El retorno solo puede ir a un dominio propio (Origin lo controla el cliente)
   const base = origin && ALLOWED_ORIGINS.has(origin) ? origin : SITE_URL;
-  const meta = { name, phone, address, product, zone, municipio: clean(b.municipio, 60), quantity: String(qty), condiciones: 'condiciones-2026-10-17', aceptado_el: new Date().toISOString() };
+  const meta = { name, nif: taxId, phone, address, product, zone, municipio: clean(b.municipio, 60), quantity: String(qty), condiciones: 'condiciones-2026-10-17', aceptado_el: new Date().toISOString() };
 
   try {
     const session = await stripe.checkout.sessions.create({

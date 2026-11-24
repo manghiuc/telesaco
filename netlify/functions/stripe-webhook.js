@@ -50,6 +50,7 @@ exports.handler = async (event) => {
           body: JSON.stringify({
             fecha:     new Date().toLocaleString('es-ES', { timeZone: 'Europe/Madrid' }),
             nombre:    safe(meta.name),
+            nif:       safe(meta.nif),
             telefono:  safe(meta.phone),
             direccion: safe(meta.address),
             producto:  safe(meta.product),

@@ -108,6 +108,7 @@
   const txt = $id('calcProgTxt');
   const rules = {
     custName: (v) => v.trim().length >= 3,
+    custTaxId: (v) => window.fxValidNif ? window.fxValidNif(v) : v.trim().length >= 8,
     custPhone: (v) => v.replace(/\D/g, '').length >= 9,
     custAddress: (v) => v.trim().length >= 5,
   };
@@ -122,8 +123,8 @@
     }
     if ($id('acceptTerms')?.checked) done++;
     calc.style.setProperty('--done', done);
-    calc.classList.toggle('is-ready', done === 4);
-    if (txt) txt.textContent = done === 4 ? '¡Todo listo para pagar!' : done === 0 ? 'Rellena tus datos para continuar' : 'Te faltan ' + (4 - done) + (4 - done === 1 ? ' paso' : ' pasos');
+    calc.classList.toggle('is-ready', done === 5);
+    if (txt) txt.textContent = done === 5 ? '¡Todo listo para pagar!' : done === 0 ? 'Rellena tus datos para continuar' : 'Te faltan ' + (5 - done) + (5 - done === 1 ? ' paso' : ' pasos');
   };
   calc.addEventListener('input', update);
   calc.addEventListener('change', update);

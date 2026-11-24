@@ -6,7 +6,7 @@ const ICONS = `<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+x
 <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" />
 <link rel="manifest" href="/site.webmanifest" />`;
 
-const VERSION = '20261042';
+const VERSION = '20261043';
 
 // Fuentes propias: sin peticiones a Google (RGPD) y con precarga de las dos críticas
 const FONTS = `<link rel="preload" href="/assets/fonts/archivo-black-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />

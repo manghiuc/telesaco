@@ -211,19 +211,42 @@
   // Aviso inline (fx.js define window.fxToast; si no carga, cae a alert)
   const toast = (msg) => (window.fxToast ? window.fxToast(msg) : alert(msg));
 
+  // DNI, NIE o CIF español con su letra o dígito de control
+  const normNif = (v) => String(v || '').toUpperCase().replace(/[\s.-]/g, '');
+  const validNif = (raw) => {
+    const v = normNif(raw);
+    const L = 'TRWAGMYFPDXBNJZSQVHLCKE';
+    if (/^\d{8}[A-Z]$/.test(v)) return L[+v.slice(0, 8) % 23] === v[8];
+    if (/^[XYZ]\d{7}[A-Z]$/.test(v)) return L[+('XYZ'.indexOf(v[0]) + v.slice(1, 8)) % 23] === v[8];
+    if (/^[ABCDEFGHJNPQRSUVWKLM]\d{7}[0-9A-J]$/.test(v)) {
+      const d = v.slice(1, 8).split('').map(Number);
+      const odd = d.reduce((t, n, i) => t + (i % 2 === 0 ? (n * 2 > 9 ? n * 2 - 9 : n * 2) : n), 0);
+      const c = (10 - (odd % 10)) % 10;
+      const letter = 'JABCDEFGHI'[c];
+      if ('PQRSNWKLM'.includes(v[0])) return v[8] === letter;
+      if ('ABEH'.includes(v[0])) return v[8] === String(c);
+      return v[8] === String(c) || v[8] === letter;
+    }
+    return false;
+  };
+  window.fxValidNif = validNif;
+
   // ── Stripe Checkout (dynamic, via Netlify Function) ──────────────────────
   orderBtn?.addEventListener('click', async (e) => {
     e.preventDefault();
     const nameEl    = document.getElementById('custName');
+    const taxEl     = document.getElementById('custTaxId');
     const phoneEl   = document.getElementById('custPhone');
     const addressEl = document.getElementById('custAddress');
     const name      = nameEl?.value.trim()    || '';
+    const taxId     = normNif(taxEl?.value);
     const phone     = phoneEl?.value.trim()   || '';
     const address   = addressEl?.value.trim() || '';
 
     const phoneOk = /^\+?[\d\s().-]{9,20}$/.test(phone) && phone.replace(/\D/g, '').length >= 9;
-    const checks  = [name.length >= 2, phoneOk, address.length >= 5];
-    [nameEl, phoneEl, addressEl].forEach((el, i) => {
+    const taxOk   = validNif(taxId);
+    const checks  = [name.length >= 2, taxOk, phoneOk, address.length >= 5];
+    [nameEl, taxEl, phoneEl, addressEl].forEach((el, i) => {
       if (!el) return;
       el.classList.remove('is-invalid');
       if (!checks[i]) {
@@ -232,11 +255,13 @@
       }
     });
     if (!checks.every(Boolean)) {
-      const first = [nameEl, phoneEl, addressEl].find((el, i) => !checks[i]);
+      const first = [nameEl, taxEl, phoneEl, addressEl].find((el, i) => !checks[i]);
       first?.focus({ preventScroll: false });
-      toast(!phoneOk && phone
-        ? 'Revisa el teléfono: solo números, mínimo 9 dígitos.'
-        : 'Rellena tu nombre, teléfono y dirección (calle y número) para continuar.');
+      toast(taxEl && !taxOk && taxId
+        ? 'Revisa el DNI, NIE o CIF: no es válido.'
+        : !phoneOk && phone
+          ? 'Revisa el teléfono: solo números, mínimo 9 dígitos.'
+          : 'Rellena tu nombre, DNI / NIE / CIF, teléfono y dirección (calle y número) para continuar.');
       return;
     }
 
@@ -258,7 +283,7 @@
       res = await fetch('/.netlify/functions/create-checkout', {
         method:  'POST',
         headers: { 'Content-Type': 'application/json' },
-        body:    JSON.stringify({ terms: !!termsEl?.checked, website: document.getElementById('hpWebsite')?.value || '', product: prod, municipio: prod === 'saco' ? '' : (zoneSel?.value || ''), quantity: qty, name, phone, address }),
+        body:    JSON.stringify({ terms: !!termsEl?.checked, website: document.getElementById('hpWebsite')?.value || '', product: prod, municipio: prod === 'saco' ? '' : (zoneSel?.value || ''), quantity: qty, name, taxId, phone, address }),
       });
       data = await res.json().catch(() => null);
     } catch (err) { /* sin conexión */ }
@@ -285,7 +310,7 @@
   });
 
   // Limpia el error de un campo en cuanto el usuario vuelve a escribir
-  ['custName', 'custPhone', 'custAddress'].forEach(id => {
+  ['custName', 'custTaxId', 'custPhone', 'custAddress'].forEach(id => {
     document.getElementById(id)?.addEventListener('input', e => e.target.classList.remove('is-invalid'));
   });
   document.getElementById('acceptTerms')?.addEventListener('change', () => {

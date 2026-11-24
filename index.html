@@ -39,8 +39,8 @@
 <link rel="preload" href="assets/fonts/archivo-black-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="preload" href="assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
 
-<script src="src/js/boot.js?v=20261042"></script>
-<link rel="stylesheet" href="src/css/site.css?v=20261042" />
+<script src="src/js/boot.js?v=20261043"></script>
+<link rel="stylesheet" href="src/css/site.css?v=20261043" />
 
 <!-- ===== Google Analytics 4 =====
      Pega tu ID real reemplazando G-XXXXXXXXXX
@@ -360,12 +360,11 @@
 <main id="contenido">
 <!-- ============== HERO ============== -->
 <section class="hero">
-  <!-- Fondo vivo: orbes con parallax, rejilla y foco que sigue al cursor -->
+  <!-- Fondo vivo: orbes con parallax y foco que sigue al cursor -->
   <div class="hero__fx" aria-hidden="true">
     <span class="hero__orb hero__orb--a" data-parallax="0.12"></span>
     <span class="hero__orb hero__orb--b" data-parallax="-0.08"></span>
     <span class="hero__orb hero__orb--c" data-parallax="0.18"></span>
-    <span class="hero__grid-bg"></span>
     <span class="hero__glow"></span>
     <img class="hero__float hero__float--saco" src="assets/img/saco-escombro-s.webp" alt="" loading="eager" fetchpriority="high" decoding="async" width="240" height="252" data-parallax="0.22" />
     <img class="hero__float hero__float--cont" src="assets/img/contenedor.webp" alt="" loading="lazy" decoding="async" width="266" height="155" data-parallax="-0.14" />
@@ -564,6 +563,10 @@
       <label class="fld">
         <span>Nombre</span>
         <input type="text" id="custName" placeholder="Nombre y apellido" autocomplete="name" maxlength="80" />
+      </label>
+      <label class="fld">
+        <span>DNI / NIE / CIF</span>
+        <input type="text" id="custTaxId" placeholder="12345678Z o B12345678" autocomplete="off" autocapitalize="characters" spellcheck="false" maxlength="12" style="text-transform:uppercase" />
       </label>
       <label class="fld">
         <span>Teléfono</span>
@@ -1243,8 +1246,8 @@
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-<script src="src/js/main.js?v=20261042" defer></script>
-<script src="src/js/fx.js?v=20261042" defer></script>
-<script src="src/js/fx2.js?v=20261042" defer></script>
+<script src="src/js/main.js?v=20261043" defer></script>
+<script src="src/js/fx.js?v=20261043" defer></script>
+<script src="src/js/fx2.js?v=20261043" defer></script>
 </body>
 </html>
